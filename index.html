@@ -71,6 +71,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-4-Linux的特殊符号" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/03/20/4-Linux%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/" class="article-date">
+  <time class="dt-published" datetime="2025-03-20T11:27:16.000Z" itemprop="datePublished">2025-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/03/20/4-Linux%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/">4.Linux的特殊符号</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux的特殊符号"><a href="#Linux的特殊符号" class="headerlink" title="Linux的特殊符号"></a>Linux的特殊符号</h1><h2 id="1、"><a href="#1、" class="headerlink" title="1、#"></a>1、#</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">号：注释、备注、批注，系统自动忽略，不执行。</span></span><br><span class="line"><span class="meta prompt_">[root@1ocalhost~]# </span><span class="language-bash">sdddddddddddddddddddddddddddddddddddddddd</span></span><br><span class="line">-bash：sdddddddddddddddddddddddddddddddddddddddd：未找到命令</span><br><span class="line"><span class="meta prompt_">[root@localhost~]#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash">[root@1oca1host~]# <span class="comment"># sdddddddddddddddddddddddddddddddddddddddd  # 这就不报错了，因为系统不执行被#号注释的内容</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在1inux系统上的指令和配置是通过#号注释的，而开发中，编程语言里面不同的语言也有不同的注释号，比如//、<span class="string">&#x27;&#x27;</span><span class="string">&#x27;注释内容&#x27;</span><span class="string">&#x27;&#x27;</span>、#、/**/等等</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、shell命令中的其他符号"><a href="#2、shell命令中的其他符号" class="headerlink" title="2、shell命令中的其他符号"></a>2、shell命令中的其他符号</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1、; 命令的分隔符，通过它可以连接多条指令，一起执行</span><br><span class="line">2、.. 代表上级目录</span><br><span class="line">3、. 代表当前目录</span><br><span class="line">4、变量和常量</span><br><span class="line">	变量，值是不固定的</span><br><span class="line">	常量，值是固定的</span><br><span class="line">	</span><br><span class="line">	env指令可以查看系统环境变量：和windows的环境变量类似。系统变量就是让一些在调用的时候比较麻烦或者说寻找的时候路径比较长的功能变得简单化。系统内部处理时，会根据变量的值做出不同的反应。</span><br><span class="line">	env # 查看环境变量</span><br><span class="line">	echo + $ + 变量名称  # 查看某个环境变量的值  echo $LANG</span><br><span class="line">	export 变量名称=xxx  # 声明环境变量、修改环境变量  export LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/image-20250320194055208.png" alt="image-20250320194055208"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5、 &quot;&quot; 双引号，换行，解析变量</span><br><span class="line">6、 &#x27;&#x27; 单引号，换行，不解析变量</span><br><span class="line">7、 \ 转义符		/ 路径分隔符</span><br><span class="line">8、 ! 历史命令调用，在find命令中是取反的意思</span><br><span class="line">9、 * 通配符，可以匹配任意字符</span><br><span class="line">10、$ 调用变量</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/20/4-Linux%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/" data-id="cm8hb863a00005kv341q4726s" data-title="4.Linux的特殊符号" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-2.Linux_Desk" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/03/18/2.Linux_Desk/" class="article-date">
@@ -502,6 +547,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/03/20/4-Linux%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/">4.Linux的特殊符号</a>
+          </li>
         
           <li>
             <a href="/2025/03/18/2.Linux_Desk/">Linux_Desk</a>

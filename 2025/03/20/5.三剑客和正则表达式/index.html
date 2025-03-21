@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>5.三剑客和正则表达式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="三剑客和正则表达式grep123456789101112131415161718192021222324252627282930313233343536373839404142434445#擅长过滤&#x2F;var&#x2F;log&#x2F;secure&#x2F;  记录用户登陆系统的行为，登录成功还是失败，系统都会自动记录这次登录动作grep &#x27;Failed password&#x27; secure # 将secur">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5.三剑客和正则表达式">
+<meta property="og:url" content="http://example.com/2025/03/20/5.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="三剑客和正则表达式grep123456789101112131415161718192021222324252627282930313233343536373839404142434445#擅长过滤&#x2F;var&#x2F;log&#x2F;secure&#x2F;  记录用户登陆系统的行为，登录成功还是失败，系统都会自动记录这次登录动作grep &#x27;Failed password&#x27; secure # 将secur">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-20T13:10:47.000Z">
+<meta property="article:modified_time" content="2025-03-21T09:55:33.122Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-5.三剑客和正则表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/03/20/5.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2025-03-20T13:10:47.000Z" itemprop="datePublished">2025-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      5.三剑客和正则表达式
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="三剑客和正则表达式"><a href="#三剑客和正则表达式" class="headerlink" title="三剑客和正则表达式"></a>三剑客和正则表达式</h1><h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">擅长过滤</span></span><br><span class="line">/var/log/secure/  记录用户登陆系统的行为，登录成功还是失败，系统都会自动记录这次登录动作</span><br><span class="line"></span><br><span class="line">grep &#x27;Failed password&#x27; secure # 将secure文件中带有&#x27;Failed password&#x27;的语句筛选出来</span><br><span class="line"></span><br><span class="line">grep &#x27;Failed password&#x27; secure | grep -Po &quot;(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)&quot;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">正则表达式，将语句中的IP地址筛选出来</span></span><br><span class="line"></span><br><span class="line">grep &#x27;Failed password&#x27; secure | grep -Po &quot;(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)&quot;|sort -n</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">排列</span></span><br><span class="line"></span><br><span class="line">grep &#x27;Failed password&#x27; secure | grep -Po &quot;(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d&#123;2&#125;|[1-9]?\d)&quot;|sort -n|uniq -c</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">计数，将重复的IP地址计数</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">grep 参数</span></span><br><span class="line">-n 显示行号</span><br><span class="line">	[root@localhost ~]# grep -n &#x27;tcp&#x27; test.txt</span><br><span class="line"><span class="meta prompt_">	#</span><span class="language-bash">vi test.txt +48，表示进入vi的时候，光标直接定位的48行起始位置。</span></span><br><span class="line">-C 对结果计数</span><br><span class="line">	[root@localhost ~]# grep -C &#x27;tcp&#x27; test.txt</span><br><span class="line">	14</span><br><span class="line">-i 不区分大小写</span><br><span class="line">	[root@localhost ~]# grep -n &#x27;tcp&#x27; test.txt -i</span><br><span class="line">-V 反向搜索，取反</span><br><span class="line">	[root@localhost ~]# grep -n &#x27;udp&#x27; test.txt -V#将不含有udp的行全部过滤出来</span><br><span class="line">-W 精准匹配</span><br><span class="line">	[root@localhost ~]# grep -w &#x27;tcp&#x27; test.txt</span><br><span class="line">-o 显示匹配的结果，前面的第一个示例中我们用过-o参数</span><br><span class="line">	[root@localhost ~]# grep -o -n &#x27;tcp&#x27; test.txt</span><br><span class="line">-A1 同时打印搜索结果行的后一行，A是after的简写</span><br><span class="line">	[root@localhost ~]# grep -A2 &#x27;ftp&#x27; test.txt</span><br><span class="line">	[root@localhost ~]#grep -A 2 &#x27;ftp&#x27; test.txt</span><br><span class="line">-B3 同时打印搜索结果行的前三行，B是before的简写</span><br><span class="line">	[root@localhost ~]# grep -B2 &#x27;ftp&#x27; test.txt</span><br><span class="line">-C2 同时打印结果行的上下各两行</span><br><span class="line">	[root@localhost ~]#grep -C2 &#x27;ftp&#x27; test.txt</span><br><span class="line">-E  扩展正则表达式</span><br><span class="line"><span class="meta prompt_">	#</span><span class="language-bash">正则我们下面会细讲，先简单了解一下。</span></span><br><span class="line">	[root@localhost ~]# grep -E &#x27;.tp&#x27; test.txt#，就是正则表达式，表示任意的一个字符</span><br><span class="line"><span class="meta prompt_">	[root@localhost~]# </span><span class="language-bash">grep -E <span class="string">&#x27;ftp|ssh&#x27;</span> test.txt <span class="comment"># 查找ftp或者ssh，|是或者的意恩，可以用多个ftp|ssh|telnet..</span></span></span><br><span class="line">-p 使用perl正则</span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">perl语言中设计的正则表达式写法规则，很强大，很多领域都支持perl正则的语法结构。</span></span><br><span class="line">	[root@localhost ~]# grep -P &quot;\d+&quot; test.txt # 匹配所有的数字</span><br><span class="line">	[root@localhost ~]# grep -P &quot;\d&#123;4,&#125;&quot; test.txt # 匹配4位的数字</span><br></pre></td></tr></table></figure>
+
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">擅长取行和修改替换</span></span><br><span class="line">用法：sed [-nri] [动作] 目标文件文件</span><br><span class="line">选项与参数：</span><br><span class="line">-n ：使用安静（silent）模式。在一般sed 的用法中，所有来自STDIN的数据一般都会被列出到终端上。但如果加上-n参数后，则只有经过sed 特殊处理的那一行（或者动作）才会被列出来。</span><br><span class="line">-r：sed的动作支持的是延伸型正则表示法的语法。（默认是基础正则表示法语法）</span><br><span class="line">-i：直接修改读取的文件内容，而不是输出到终端。</span><br><span class="line"></span><br><span class="line">动作说明：[ni[，n2]]function</span><br><span class="line">n1，n2一般表示为行号</span><br><span class="line"></span><br><span class="line">function:</span><br><span class="line">a ：指定行后面插入一行</span><br><span class="line">d ：删除</span><br><span class="line">i ：指定行前面插入一行</span><br><span class="line">p ：打印，#一般和前面的-n参数一起用</span><br><span class="line">S ：替换 需要I忽略大小写，全局替换需要g</span><br></pre></td></tr></table></figure>
+
+<h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">擅长取列</span></span><br><span class="line">1.取列</span><br><span class="line">	awk &#x27;&#123;print $1&#125;&#x27; test.txt  # 取test。txt文件中的第一列</span><br><span class="line">	awk &#x27;&#123;print $1，$NF&#125;&#x27; test.txt  #取第一列和做后一列（DF表示最后一列）</span><br><span class="line">2.计算</span><br><span class="line">	awk &#x27;&#123;print $1,$2*$3&#125;&#x27; test.txt  # 取test。txt文件中的第一列以及第二列乘第三列的积</span><br><span class="line">	awk &#x27;&#123;print $1 的价格为 $2*$3&#125;&#x27; test.txt # 中间数值之间可以加信息</span><br><span class="line">3.根据行号来筛选数据</span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">a = 1表示变量值，让a=1</span></span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">a == 1，表示判断一下a的值是不是等于1，等于1那么条件判断结果为真，不等1那么条件判断结果为假</span></span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_">	#</span><span class="language-bash">支持符号： &gt;  &lt;  ==  &gt;=  &lt;=</span></span><br><span class="line"><span class="meta prompt_">	[root@localhost~]# </span><span class="language-bash">awk <span class="string">&#x27;NR==1&#x27;</span> 4.txt <span class="comment">#取出第一行数据，grep不会取出特定的行，只能筛选某些行</span></span></span><br><span class="line">	orange 10 20</span><br><span class="line"><span class="meta prompt_">	[root@localhost~]# </span><span class="language-bash">awk <span class="string">&#x27;NR&gt;2&#x27;</span> 4.txt <span class="comment">#取出行号大于2的行数据</span></span></span><br><span class="line">	mongo 50 10</span><br><span class="line">	banana 52 00</span><br><span class="line"><span class="meta prompt_">	[rootaloca1host~]# </span><span class="language-bash">awk <span class="string">&#x27;NR&lt;=3&#x27;</span> 4.txt <span class="comment">#取出行号小于等于3的行数据</span></span></span><br><span class="line">	orange 10 20</span><br><span class="line">	apple 20 30</span><br><span class="line">	mongo 50 10</span><br><span class="line"><span class="meta prompt_">	[root@loca1host~]#</span><span class="language-bash">awk <span class="string">&#x27;NR&lt;=3 &amp;&amp; NR&gt;1&#x27;</span> 4.txt <span class="comment">#取出行号大于1并且小于等于3的行</span></span></span><br><span class="line">	apple 20 30</span><br><span class="line">	mongo 50 10</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_">	#</span><span class="language-bash">还可以取行的同时来取列</span></span><br><span class="line">	[root@localhost ~]# awk &#x27;NR&lt;=3&#123;print $1&#125;&#x27; 4.txt</span><br><span class="line">	orange</span><br><span class="line">	apple</span><br><span class="line">	mongo</span><br><span class="line">4.指定分隔符，默认是按照空格作为分隔符的</span><br><span class="line">	awk -F &quot;:&quot; &#x27;&#123;print $7,$1&#125;&#x27; /etc/passwd  # passwd文件是用 ：作为分隔符的</span><br><span class="line">5.过滤文本</span><br><span class="line">	awk -F &#x27;:&#x27; &#x27;$1~/h/&#x27; /etc/passwd  # 找出passwd文件中第一列含有&quot;h&quot;的每一行的所有数据</span><br><span class="line">	awk -F &#x27;:&#x27; &#x27;$1~/h/&#123;print $2,$3&#125;&#x27; /etc/passwd  # 找出passwd文件中第一列含有&quot;h&quot;的每一行的第二三列数据</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/20/5.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="cm8ilxsy600017sv37c3pfenj" data-title="5.三剑客和正则表达式" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/03/20/4.Linux%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">4.Linux的特殊符号</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/20/5.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">5.三剑客和正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/4.Linux%E7%9A%84%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7/">4.Linux的特殊符号</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/18/2.Linux_Desk/">2.Linux_Desk</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/18/%E5%9F%BA%E7%A1%80/">基础</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/18/3.%E5%85%B6%E4%BB%96/">3.其他</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

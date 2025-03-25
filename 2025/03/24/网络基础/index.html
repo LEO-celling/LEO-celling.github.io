@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/image/image-20250325194816531.png">
 <meta property="og:image" content="http://example.com/image/image-20250325205016629.png">
 <meta property="article:published_time" content="2025-03-24T10:13:08.000Z">
-<meta property="article:modified_time" content="2025-03-25T13:11:01.775Z">
+<meta property="article:modified_time" content="2025-03-25T13:16:45.100Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/image/image-20250324190708235.png">
@@ -121,6 +121,8 @@
 <h2 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3.网络层"></a>3.网络层</h2><p>网络层最常使用的是 IP 协议（Internet Protocol），IP 协议会将传输层的报文作为数据部分，再加上 IP 包头组装成 IP 报文，如果 IP 报文大小超过 MTU（以太网中一般为 1500 字节）就会再次进行分片，得到一个即将发送到网络的 IP 报文。</p>
 <p><img src="/../image/image-20250324205523014.png" alt="image-20250324205523014"></p>
 <h2 id="4-传输层"><a href="#4-传输层" class="headerlink" title="4.传输层"></a>4.传输层</h2><p>在传输层会有两个传输协议，分别是 TCP 和 UDP。TCP 的全称叫传输层控制协议（Transmission Control Protocol），大部分应用使用<br>的正是 TCP 传输层协议，比如 HTTP 应用层协议。TCP 相比 UDP 多了很多特性，比如流量控制、超时重传、拥塞控制等，这些都是为了保证数据包能可靠地传输给对方。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">TCP协议在发送数据包的时候，会发送多种类型的数据包，每种数据包都有特殊的意义，每个中数据包都会在数据包里面添加上特定的标</span><br><span class="line">识数据来表示数据包的意义，比如：</span><br><span class="line">SYN	建立链接</span><br><span class="line">ACK	回应标识</span><br><span class="line">FIN	断开链接</span><br><span class="line">PSH	数据包</span><br><span class="line">RST	重复（重传）  网络不稳定时会看到许多重发包</span><br><span class="line">URG	紧急指针</span><br></pre></td></tr></table></figure>
+
 <p>UDP 就相对很简单，简单到只负责发送数据包，不保证数据包是否能抵达对方，但它实时性相对更好，传输效率也高。当然，UDP 也可以实现可靠传输，把 TCP 的特性在应用层上实现就可以，不过要实现一个商用的可靠 UDP 传输协议，也不是一件简单的事情。</p>
 <p>应用需要传输的数据可能会非常大，如果直接传输就不好控制，因此当传输层的数据包大小超过 MSS（TCP 最大报文段长度） ，就要将数据包分块，这样即使中途有一个分块丢失或损坏了，只需要重新这一个分块，而不用重新发送整个数据包。在 TCP协议中，我们把每个分块称为一个 TCP 段（TCP Segment）。</p>
 <p><img src="/../image/image-20250324205650387.png" alt="image-20250324205650387"></p>

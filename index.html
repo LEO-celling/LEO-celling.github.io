@@ -71,6 +71,114 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-网络基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/03/24/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2025-03-24T10:13:08.000Z" itemprop="datePublished">2025-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/03/24/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="一、网络通信过程"><a href="#一、网络通信过程" class="headerlink" title="一、网络通信过程"></a>一、网络通信过程</h1><p><img src="/../image/image-20250324190708235.png" alt="image-20250324190708235"></p>
+<h1 id="二、osi-七层模型"><a href="#二、osi-七层模型" class="headerlink" title="二、osi 七层模型"></a>二、osi 七层模型</h1><p><img src="/../image/image-20250324182904137.png" alt="image-20250324182904137"></p>
+<p><img src="/../image/image-20250324192904947.png" alt="image-20250324192904947"></p>
+<h2 id="1-物理层"><a href="#1-物理层" class="headerlink" title="1.物理层"></a>1.物理层</h2><p>当数据准备要从设备发送到网络时，需要把数据包转换成电信号，让其可以在物理介质中传输，这一层就是物理层（Physical Layer），它主要是为数据链路层提供二进制传输的服务。</p>
+<h2 id="2-数据链接层"><a href="#2-数据链接层" class="headerlink" title="2.数据链接层"></a>2.数据链接层</h2><p>实际场景中，网络并不是一个整体，比如你家和我家就不属于一个网络，所以数据不仅可以在同一个网络中设备间进行传输，也可以跨网络进行传输。一旦数据需要跨网络传输，就需要有一个设备同时在两个网络当中，这个设备一般是路由器，路由器可以通过路由表计算出下一个要去的 IP 地址。那问题来了，路由器怎么知道这个 IP 地址是哪个设备的呢？于是，就需要有一个专门的层来标识网络中的设备，让数据在一个链路中传输，这就是数据链路层（Data Link Layer），它主要为网络层提供链路级别传输的服务</p>
+<p>每一台设备的网卡都会有一个 MAC 地址，它就是用来唯一标识设备的。路由器计算出了下一个目的地 IP 地址，再通过 ARP 协议找到该目的地的 MAC 地址，这样就知道这个 IP 地址是哪个设备的了。</p>
+<h2 id="3-网络层"><a href="#3-网络层" class="headerlink" title="3.网络层"></a>3.网络层</h2><p>网络层最常使用的是 IP 协议（Internet Protocol），IP 协议会将传输层的报文作为数据部分，再加上 IP 包头组装成 IP 报文，如果 IP 报文大小超过 MTU（以太网中一般为 1500 字节）就会再次进行分片，得到一个即将发送到网络的 IP 报文。</p>
+<p><img src="/../image/image-20250324205523014.png" alt="image-20250324205523014"></p>
+<h2 id="4-传输层"><a href="#4-传输层" class="headerlink" title="4.传输层"></a>4.传输层</h2><p>在传输层会有两个传输协议，分别是 TCP 和 UDP。TCP 的全称叫传输层控制协议（Transmission Control Protocol），大部分应用使用<br>的正是 TCP 传输层协议，比如 HTTP 应用层协议。TCP 相比 UDP 多了很多特性，比如流量控制、超时重传、拥塞控制等，这些都是为了保证数据包能可靠地传输给对方。</p>
+<p>UDP 就相对很简单，简单到只负责发送数据包，不保证数据包是否能抵达对方，但它实时性相对更好，传输效率也高。当然，UDP 也可以实现可靠传输，把 TCP 的特性在应用层上实现就可以，不过要实现一个商用的可靠 UDP 传输协议，也不是一件简单的事情。</p>
+<p>应用需要传输的数据可能会非常大，如果直接传输就不好控制，因此当传输层的数据包大小超过 MSS（TCP 最大报文段长度） ，就要将数据包分块，这样即使中途有一个分块丢失或损坏了，只需要重新这一个分块，而不用重新发送整个数据包。在 TCP协议中，我们把每个分块称为一个 TCP 段（TCP Segment）。</p>
+<p><img src="/../image/image-20250324205650387.png" alt="image-20250324205650387"></p>
+<p>当设备作为接收方时，传输层则要负责把数据包传给应用，但是一台设备上可能会有很多应用在接收或者传输数据，因此需要用一个编号将应用区分开来，这个编号就是端口。</p>
+<p>比如 80 端口通常是 Web 服务器用的，22 端口通常是远程登录服务器用的。而对于浏览器（客户端）中的每个标签栏都是一个独立的进程，操作系统会为这些进程分配临时的端口号。</p>
+<p>由于传输层的报文中会携带端口号，因此接收方可以识别出该报文是发送给哪个应用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查看运行指令程序的端口</span><br><span class="line">netstat -ano</span><br><span class="line">netstat -lntup</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-应用层"><a href="#5-应用层" class="headerlink" title="5.应用层"></a>5.应用层</h2><p>最上层的，也是我们能直接接触到的就是应用层（ Application Layer ），我们电脑或手机使用的应用软件都是在应用层实现。那么，当两个不同设备的应用需要通信的时候，应用就把应用数据传给下一层，也就是传输层。</p>
+<p>所以，应用层只需要专注于为用户提供应用功能，不用去关心数据是如何传输的，就类似于，我们寄快递的时候，只需要把包裹交给快递员，由他负责运输快递，我们不需要关心快速是如何被运输的。</p>
+<p>而且应用层是工作在操作系统中的用户态，传输层及以下则工作在内核态。</p>
+<h1 id="三、IP地址"><a href="#三、IP地址" class="headerlink" title="三、IP地址"></a>三、IP地址</h1><h2 id="（一）IP的基本认识"><a href="#（一）IP的基本认识" class="headerlink" title="（一）IP的基本认识"></a>（一）IP的基本认识</h2><h3 id="IP的定义"><a href="#IP的定义" class="headerlink" title="IP的定义"></a>IP的定义</h3><p>在 TCP&#x2F;IP 网络通信时，为了保证能正常通信，每个设备都需要配置正确的 IP 地址，否则无法实现正常的通信。</p>
+<p>IP 地址（IPv4 地址）由 32 位正整数来表示，IP 地址在计算机是以二进制的方式处理的。</p>
+<p>而人类为了方便记忆采用了点分十进制的标记方式，也就是将 32 位 IP 地址以每 8位为组，共分为 4 组，每组以「 . 」隔开，再将每组转换成十进制。</p>
+<p><img src="/../image/image-20250325175829729.png" alt="image-20250325175829729"></p>
+<h3 id="IP的作用"><a href="#IP的作用" class="headerlink" title="IP的作用"></a>IP的作用</h3><p>IP 在 TCP&#x2F;IP 参考模型中处于第三层，也就是网络层网络层的主要作用是：实现主机与主机之间的通信，也叫点对点（end to end）通<br>信。</p>
+<p><img src="/../image/image-20250325175349127.png" alt="image-20250325175349127"></p>
+<h3 id="IP与MAC关系"><a href="#IP与MAC关系" class="headerlink" title="IP与MAC关系"></a>IP与MAC关系</h3><p>IP（网络层） 和 MAC （数据链路层）之间的区别和关系在上面我们知道 IP 的作用是主机之间通信的，而 MAC 的作用则是实现「直连」的两个设备之间通信，而 IP 则负责在「没有直连」的两个网络之间进行通信传输。</p>
+<p>IP用于区分不同的广播域。如果用MAC地址进行发送信息，那么会产生广播风暴</p>
+<p><img src="/../image/image-20250325180537081.png" alt="image-20250325180537081"></p>
+<h2 id="（二）IP地址的基础知识"><a href="#（二）IP地址的基础知识" class="headerlink" title="（二）IP地址的基础知识"></a>（二）IP地址的基础知识</h2><h3 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h3><p>互联网诞生之初，IP地址显得十分充裕，于是科学家将IP地址划分为A、B、C、D、E五类</p>
+<p><img src="/../image/image-20250325180919763.png" alt="image-20250325180919763"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A、B、C 类主要分为两个部分，分别是网络号和主机号。这很好理解，好比小林是 A 小区 1 栋 101 号，你是 B 小区 1 栋 101 号。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../image/image-20250325181217335.png" alt="image-20250325181217335"></p>
+<p><img src="/../image/image-20250325181335468.png" alt="image-20250325181335468"></p>
+<p><img src="/../image/image-20250325181355931.png" alt="image-20250325181355931"></p>
+<h3 id="公有IP地址和私有IP地址"><a href="#公有IP地址和私有IP地址" class="headerlink" title="公有IP地址和私有IP地址"></a>公有IP地址和私有IP地址</h3><p>  IP地址分为内网IP地址和公网IP地址，内网IP地址又叫做私网IP地址，或者保留IP地址。只有公网IP地址可以上网，这时候就需要NAT技术将内网IP地址转换为公网IP地址，有了公网IP，数据包才能发送到网上去，实现互联网通信</p>
+<p><img src="/../image/image-20250325182228633.png" alt="image-20250325182228633"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">平时我们办公室、家里、学校用的 IP 地址，一般都是私有 IP 地址。因为这些地址允许组织内部的 IT 人员自己管理、自己分配，而且可以重复。因此，你学校的某个私有 IP 地址和我学校的可以是一样的。</span><br><span class="line"></span><br><span class="line">就像每个小区都有自己的楼编号和门牌号，你小区家可以叫 1 栋 101 号，我小区家也可以叫 1 栋 101，没有任何问题。但一旦出了小区，就需要带上中山路 666 号（公网 IP 地址），是国家统一分配的，不能两个小区都叫中山路 666。</span><br><span class="line"></span><br><span class="line">所以，公有 IP 地址是有个组织统一分配的，假设你要开一个博客网站，那么你就需要去申请购买一个公有 IP，这样全世界的人才能访问。并且公有 IP 地址基本上要在整个互联网范围内保持唯一。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="（三）IP协议相关技术"><a href="#（三）IP协议相关技术" class="headerlink" title="（三）IP协议相关技术"></a>（三）IP协议相关技术</h2><h3 id="DNS解析流程"><a href="#DNS解析流程" class="headerlink" title="DNS解析流程"></a>DNS解析流程</h3><h4 id="1-DNS的定义和由来"><a href="#1-DNS的定义和由来" class="headerlink" title="1.DNS的定义和由来"></a>1.DNS的定义和由来</h4><p>我们在上网的时候，通常使用的方式域名，而不是 IP 地址，因为域名方便人类记忆。那么实现这一技术的就是 DNS 域名解析，DNS 可以将域名网址自动转换为具体的 IP地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DNS:全称domain name system 域名系统</span><br><span class="line">作用：将域名解析成ip地址</span><br><span class="line">计算机和计算机之间通信是通过ip：端口来实现的。比如:192.168.19.36:51000&lt;---&gt;192.168.19.40:80服务端的某些服务程序的端口一般是固定的，客户端根据ip和端口进行连接通信，客户端的ip是固定的，但是端口一般是系统随机分配的。</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-DNS域名解析"><a href="#2-DNS域名解析" class="headerlink" title="2.DNS域名解析"></a>2.DNS域名解析</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">根域.是在最顶层，它的下一层就是 com 顶级域，再下面是 server.com</span><br><span class="line"></span><br><span class="line">所以域名的层级关系类似一个树状结构：</span><br><span class="line">根 DNS 服务器（ . ）</span><br><span class="line">顶级域 DNS 服务器（com）</span><br><span class="line">权威 DNS 服务器（server.com）</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/image-20250325194423922.png" alt="image-20250325194423922"></p>
+<p>顺序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、找本机的hosts文件Windowshost文件路径：c:\wINDows\system32\drivers\etc\hosts，hosts文件以静态映射的方式提供IP地</span><br><span class="line">址与主机名的对照表。</span><br><span class="line">2、浏览器缓存：浏览器会按照一定的频率缓存DNs记录。浏览器地址栏输入chrome：//net-internals/#dns，就可以查看chormeDNS缓存。</span><br><span class="line">3、操作系统缓存：如果浏览器缓存中找不到需要的DNs记录，那就去操作系统中找。cmd命令ipconfig /displaydrs 用于查看操作系统dns缓</span><br><span class="line">存。ipconfig /flushdns刷新缓存，之前的记录就没了，只剩下一些固定的了。</span><br><span class="line">4、路由缓存：路由器也有DNS缓存。</span><br><span class="line">5、去DNS本地服务器查找，自己公司搭建的或者阿里DNS服务器、百度DNS服务器等等</span><br><span class="line">6、去根域名服务器上找，全世界有13台根域名服务器，其实我们的网址，比如www.hc39.com后面都有个点.，这个.代表根域名的意思，我们可以</span><br><span class="line">ns1ookup www.hc39.com. 发现还是可以查询到的，只不过这个.默认省略掉了。</span><br><span class="line">7、根域名查不到的话，会直接下发本次请求给本地DNS服务器，并且把.com的顶级域名服务器地址发送给它，DNS服务器再向.com顶级域名服务器</span><br><span class="line">来进行查询。.com\.cn\.cloud等都是顶级域名服务器。</span><br><span class="line">8、如果.com找不到的话，.com顶级域名服务器会给本地DNs服务器下发请求，并且给它hc39.com域名服务器的地址，意思就是说hc39这个域名</span><br><span class="line">下放给hc39这个域名所属公司的DNs服务器了，那么就去hc39.com域名服务器进行查询</span><br><span class="line">9、查找到之后再还给你的电脑，你的电脑本地和路由器等都会自动缓存这些记录，下次再访问这个网站的时候，就从缓存中找，不然每次都按照流</span><br><span class="line">程找一遍就太慢了。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/image-20250325194816531.png" alt="image-20250325194816531"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Linux上的DNS相关指令：</span><br><span class="line">dig			dig@DNS服务器 要查询的域名地址</span><br><span class="line">nslookup	nslook 域名地址</span><br><span class="line">host		hots 域名地址</span><br><span class="line">ping		ping 域名地址</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-域名"><a href="#3-域名" class="headerlink" title="3.域名"></a>3.域名</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">一是国家和地区顶级域名（country code top-level domains，简称ccTLDs），目前200多个国家都按照ISO3166国家代码分配了项级域</span><br><span class="line">名，例如中国是cn，日本是jp等；</span><br><span class="line"></span><br><span class="line">二是国际顶级域名（generic top-level domains，简称gTLDs），例如表示工商企业的.com域名，表示网络提供商的.net域名，表示非盈</span><br><span class="line">利组织的.org域名等；</span><br><span class="line"></span><br><span class="line">三是新顶级域名（New Generic Top-level Domain，简称New gTLD）如通用的.xyz域名、代表“高端”的.top域名、代表“红色”的.red域</span><br><span class="line">名、代表”人”的.men域名等一千多种。</span><br><span class="line"></span><br><span class="line">从技术角度来看，一个完整的域名由顶级域名和下级域名构成，各部分之间用”.”隔开，最后一个“.”的右边被称为顶级域名（TLD，也称为一级域</span><br><span class="line">名），“.”左边的部分被称为二级域名，二级域名的左边是三级域名，以此类推。</span><br><span class="line">为了使于理解和交流，我们通常会把域名分为前缀+后缀，后缀一般就是我们常见的.com/.cn/.cc/.net等等，这些都属于顶级域名，前缀则是由</span><br><span class="line">数字、字母自由组成的，用以和其他域名相区分的部分，这部分也是域名的核心价值所在。举个例子，中科三方的官网为http：//www.sfn.cn，这其中.cn为顶级域名，也就是人们常说的后级部分，.sfn则是其前缀的二级域名部分，代表的是中科三方这个品牌，最前面的.www则是前缀的三级域名部分，代表的是中科三方的官网。</span><br><span class="line"></span><br><span class="line">二级域名的拥有者可以任意定义三级及三级以上的域名，比如小米公司花费两千万买下的http：//mi.com这个二级域名后，他就可以根据其产品和</span><br><span class="line">业务再这个二级域名基础上无限定义三级域名或更高级的域名，比如，小米云服务：http：//i.mi.com，小爱开放平台：</span><br><span class="line">http://xiaoai.mi.com，小米iot开发者平台：http://iot.mi.com，小米金融：http://jr.mi.com等等：一般情况下，除了政府相关网</span><br><span class="line">站外，很少有企业定义三级以上的域名。</span><br></pre></td></tr></table></figure>
+
+<h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h3><p>ARP（Address Resolution Protocol），工作在网络层和数据链路层中间。osi七层模型中，属于数据链路基层的。<br>作用：把ip地址解析成mac地址</p>
+<p><img src="/../image/image-20250325205016629.png" alt="image-20250325205016629"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ARP 是借助 ARP 请求与 ARP 响应两种类型的包确定 MAC 地址的。</span><br><span class="line"></span><br><span class="line">主机会通过广播发送 ARP 请求，这个包中包含了想要知道的 MAC 地址的主机IP 地址。</span><br><span class="line">当同个链路中的所有设备收到 ARP 请求时，会去拆开 ARP 请求包里的内容，如果 ARP 请求包中的目标 IP 地址与自己的 IP 地址一致，那么这个设备就将自己的MAC 地址塞入 ARP 响应包返回给主机。</span><br><span class="line">ARP缓存表记录收到的MAC地址。但是缓存表具有时效性</span><br><span class="line">arp -a  <span class="comment"># 可以查看arp缓存</span></span><br><span class="line"></span><br><span class="line">ARP 协议是已知 IP 地址求 MAC 地址，而RARP协议正好相反。它是已知 MAC 地址求 IP 地址。例如将打印机服务器等小型嵌入式设备接入到网络时就经常会用得到。</span><br><span class="line"></span><br><span class="line">通常这需要架设一台 RARP 服务器，在这个服务器上注册设备的 MAC 地址及其IP地址。</span><br><span class="line">然后再将这个设备接入到网络，接着：该设备会发送一条「我的 MAC 地址是XXXX，请告诉我，我的IP地址应该是什么」的请求信息。</span><br><span class="line">RARP 服务器接到这个消息后返回「MAC地址为 XXXX 的设备，IP地址为 XXXX」的信息给这个设备。</span><br><span class="line">最后，设备就根据从 RARP 服务器所收到的应答信息设置自己的 IP 地址。</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="四、文字编码"><a href="#四、文字编码" class="headerlink" title="四、文字编码"></a>四、文字编码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#我们要将生活中现实的情况转换到计算机的世界，叫做建模，比如我们常用的文字，要进入到计算机中使用，下面这些编码就是用来表示文字的。</span><br><span class="line"></span><br><span class="line">ASCII码#每个数字和字母都占1个字节，不支持中文，00000000000000--11111111总共可以涵盖256种符号，包含大小写英文、特殊符号等</span><br><span class="line"></span><br><span class="line">GB2312#每个数字和字母都占1个字节，中文占2个字节，但是可以涵盖的应为只有6700多个</span><br><span class="line"></span><br><span class="line">GBK#升级版的GB2312，涵盖的中文2W多个和1800多个特殊符号，中文基本全部涵盖了</span><br><span class="line"></span><br><span class="line">其他国家也有自己的文字，每个国家都需要自己的编码，并且这些国家都需要互联网通信，这怎么搞，那么就有一个组织将全世界的文字编码全部收</span><br><span class="line">集起来了，然后重新编码，这个编码叫做万国码，Unicode。两个字节表示不了全世界的那么多国家的语言了，所以变成了4个字节来容纳这些文字</span><br><span class="line">编码。</span><br><span class="line">在这种情况下，英文的编码占用一个字节，现在硬盘空间莫名其妙的大了4倍，这就不太合理。</span><br><span class="line">于是基于万国码推出了可变长编码，utf-8：一个英文一个字节，一个汉字三个字节。现在全世界用的最多的编码形式。</span><br><span class="line">运行到内存中的程序数据编码都是万国码，所以什么语言的数据都不会乱码，但是我们如果非要自己指定gbk等编码，那么就可能要出现乱码了，</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/24/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/" data-id="cm8oilrex0000qov3bot754tu" data-title="网络基础" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-7.Linux运行级别和sudo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/03/23/7.Linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E5%92%8Csudo/" class="article-date">
@@ -653,6 +761,10 @@
       <ul>
         
           <li>
+            <a href="/2025/03/24/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/23/7.Linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E5%92%8Csudo/">7.Linux运行级别和sudo</a>
           </li>
         
@@ -666,10 +778,6 @@
         
           <li>
             <a href="/2025/03/18/1.%E5%9F%BA%E7%A1%80/">基础</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/18/2.Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/">1.Linux基础指令</a>
           </li>
         
       </ul>

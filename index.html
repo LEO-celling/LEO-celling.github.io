@@ -199,7 +199,26 @@
 <p>在雷电敏感信息中搜索qq</p>
 <p><img src="/../image/image-20250408191719192.png" alt="image-20250408191719192"></p>
 <h2 id="18-请分析Navicat中root用户的密码是什么？-标准格式：-123Aa"><a href="#18-请分析Navicat中root用户的密码是什么？-标准格式：-123Aa" class="headerlink" title="18.请分析Navicat中root用户的密码是什么？[标准格式：@123Aa]"></a>18.请分析Navicat中root用户的密码是什么？[标准格式：@123Aa]</h2><p><img src="/../image/image-20250408191953506.png" alt="image-20250408191953506"></p>
+<h1 id="服务器取证"><a href="#服务器取证" class="headerlink" title="服务器取证"></a>服务器取证</h1><h2 id="1-该集群主节点操作系统版本是？-标准格式：100-100-100"><a href="#1-该集群主节点操作系统版本是？-标准格式：100-100-100" class="headerlink" title="1.该集群主节点操作系统版本是？[标准格式：100.100.100]"></a>1.该集群主节点操作系统版本是？[标准格式：100.100.100]</h2><p><img src="/../image/image-20250410181026919.png" alt="image-20250410181026919"></p>
+<h2 id="2-该集群创建时间是？-标准格式：0000-00-00T00-00-00Z"><a href="#2-该集群创建时间是？-标准格式：0000-00-00T00-00-00Z" class="headerlink" title="2.该集群创建时间是？[标准格式：0000-00-00T00:00:00Z]"></a>2.该集群创建时间是？[标准格式：0000-00-00T00:00:00Z]</h2><p><strong>kubectl cluster-info dump</strong>  查看集群的详细信息，但是使用这个指令会有一大串的信息，很难找到集群的创造时间。</p>
+<p><img src="/../image/image-20250410185720347.png" alt="image-20250410185720347"></p>
+<p>默认命名空间自动创建：在 Kubernetes 集群初始化创建的过程中，default 命名空间作为系统默认的一部分自动创建。当你搭建集群时，在集群初始化的关键步骤中，default 命名空间就会被创建出来。这意味着它的创建和集群的启动是紧密相连的，时间上非常接近。<br>也就是说可以通过查看default命名空间的创建时间来查看集群的创建时间。</p>
+<p><strong>kubectl get namespace default -o yaml</strong>  最终使用这个命令找到集群的创造时间</p>
+<p>此命令会以 <strong>YAML 格式（</strong>一种人类可读的数据序列化格式<strong>）</strong>输出 <code>default</code> 命名空间的详细信息，可以在输出中找到 <code>creationTimestamp</code> 字段来获取创建时间。</p>
+<p><img src="/../image/image-20250410185103861.png" alt="image-20250410185103861"></p>
+<h2 id="3-该集群共有多少个命名空间？-标准格式：100"><a href="#3-该集群共有多少个命名空间？-标准格式：100" class="headerlink" title="3.该集群共有多少个命名空间？[标准格式：100]"></a>3.该集群共有多少个命名空间？[标准格式：100]</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查看命名空间</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">kubectl get namespaces</span></span><br><span class="line">简写为：$ kubectl get ns</span><br></pre></td></tr></table></figure>
 
+<p><img src="/../image/image-20250410190149947.png" alt="image-20250410190149947"></p>
+<h2 id="4-该集群所有命名空间内总共有多少个pod？-标准格式：100"><a href="#4-该集群所有命名空间内总共有多少个pod？-标准格式：100" class="headerlink" title="4.该集群所有命名空间内总共有多少个pod？[标准格式：100]"></a>4.该集群所有命名空间内总共有多少个pod？[标准格式：100]</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod -A</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/image-20250410190851320.png" alt="image-20250410190851320"></p>
+<h2 id="5-请给出该集群所使用的cni网络插件及其版本？-标准格式：abc-V1-1-1"><a href="#5-请给出该集群所使用的cni网络插件及其版本？-标准格式：abc-V1-1-1" class="headerlink" title="5.请给出该集群所使用的cni网络插件及其版本？[标准格式：abc-V1.1.1]"></a>5.请给出该集群所使用的cni网络插件及其版本？[标准格式：abc-V1.1.1]</h2><p>问AI查到CNI 插件的配置文件通常存储在节点的 <code>/etc/cni/net.d/</code> 目录中。</p>
+<p><img src="/../image/image-20250410192020501.png" alt="image-20250410192020501"></p>
+<p>因此答案：flannel-V0.3.1   可答案不对。后来看到CNI 插件的二进制文件通常存储在 <code>/opt/cni/bin/</code> 目录中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">通过命令</span><br><span class="line">/opt/cni/bin/flannel -version</span><br><span class="line">查看 fllannel 的版本</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/image-20250410192842285.png" alt="image-20250410192842285"></p>
+<h2 id="6-其中打金平台的后台登录地址跳转文件是？-标准格式：abc-php"><a href="#6-其中打金平台的后台登录地址跳转文件是？-标准格式：abc-php" class="headerlink" title="6.其中打金平台的后台登录地址跳转文件是？[标准格式：abc.php]"></a>6.其中打金平台的后台登录地址跳转文件是？[标准格式：abc.php]</h2>
       
     </div>
     <footer class="article-footer">

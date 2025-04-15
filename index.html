@@ -263,7 +263,47 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">通过命令</span><br><span class="line">/opt/cni/bin/flannel -version</span><br><span class="line">查看 fllannel 的版本</span><br></pre></td></tr></table></figure>
 
 <p><img src="/../image/image-20250410192842285.png" alt="image-20250410192842285"></p>
-<h2 id="6-其中打金平台的后台登录地址跳转文件是？-标准格式：abc-php"><a href="#6-其中打金平台的后台登录地址跳转文件是？-标准格式：abc-php" class="headerlink" title="6.其中打金平台的后台登录地址跳转文件是？[标准格式：abc.php]"></a>6.其中打金平台的后台登录地址跳转文件是？[标准格式：abc.php]</h2>
+<h2 id="6-其中打金平台的后台登录地址跳转文件是？-标准格式：abc-php"><a href="#6-其中打金平台的后台登录地址跳转文件是？-标准格式：abc-php" class="headerlink" title="6.其中打金平台的后台登录地址跳转文件是？[标准格式：abc.php]"></a>6.其中打金平台的后台登录地址跳转文件是？[标准格式：abc.php]</h2><p><img src="/../image/image-20250415191526762.png" alt="image-20250415191526762"></p>
+<p>用火眼搜索到服务器2、3分别有两个网站，直接用浏览器是打不开的。</p>
+<p>现在先在hosts文件中添加这几个网站</p>
+<p><img src="/../image/image-20250415191816498.png" alt="image-20250415191816498"></p>
+<p>启动宝塔，按照给的网址打开</p>
+<p><img src="/../image/image-20250415191928136.png" alt="image-20250415191928136"></p>
+<p><img src="/../image/image-20250415192027105.png" alt="image-20250415192027105"></p>
+<p>进去之后发现四个网站分别是</p>
+<p><img src="/../image/image-20250415192239351.png" alt="image-20250415192239351"></p>
+<p><img src="/../image/image-20250415192256521.png" alt="image-20250415192256521"></p>
+<p><img src="/../image/image-20250415192310154.png" alt="image-20250415192310154"></p>
+<p><img src="/../image/image-20250415192323037.png" alt="image-20250415192323037"></p>
+<p>发现没有打金网站，可以猜测图一<a target="_blank" rel="noopener" href="http://www.mtbtsdafda.com是打金平台/">www.mtbtsdafda.com是打金平台</a></p>
+<p>图三是借贷，图四是交友，图二在后面的题有提到是金瑞币（JINRUI COIN）</p>
+<p>现在需要找到打金平台的后台登陆地址跳转文件</p>
+<p><img src="/../image/image-20250415192619620.png" alt="image-20250415192619620"></p>
+<p>根据题目说的.php后缀，找到php文件</p>
+<p><img src="/../image/image-20250415192713687.png" alt="image-20250415192713687"></p>
+<p><img src="/../image/image-20250415192800289.png" alt="image-20250415192800289"></p>
+<p><img src="/../image/image-20250415192813632.png" alt="image-20250415192813632"></p>
+<p>用WIdbdgd1Us.php里给的地址：&#x2F;index.php&#x2F;systemlogined&#x2F;login&#x2F;index</p>
+<p>得到后台地址</p>
+<p><a target="_blank" rel="noopener" href="http://www.mtbtsdafda.com/index.php/systemlogined/login/index">http://www.mtbtsdafda.com/index.php/systemlogined/login/index</a></p>
+<p><img src="/../image/image-20250415192840405.png" alt="image-20250415192840405"></p>
+<h2 id="7-其中打金平台密码加密算法是？-标准格式：abc"><a href="#7-其中打金平台密码加密算法是？-标准格式：abc" class="headerlink" title="7.其中打金平台密码加密算法是？[标准格式：abc]"></a>7.其中打金平台密码加密算法是？[标准格式：abc]</h2><p><img src="/../image/image-20250415194645604.png" alt="image-20250415194645604"></p>
+<p>在宝塔界面中搜索password</p>
+<h2 id="8-其中打金平台中”13067137585”用户的累计产量有多少？-标准格式：100-00"><a href="#8-其中打金平台中”13067137585”用户的累计产量有多少？-标准格式：100-00" class="headerlink" title="8.其中打金平台中”13067137585”用户的累计产量有多少？[标准格式：100.00]"></a>8.其中打金平台中”13067137585”用户的累计产量有多少？[标准格式：100.00]</h2><p>在宝塔文件里搜索13067137585，搜索结果很杂，不好根据搜索结果得出累计产量，在搜索结果中还能看到用户对应的password但是sha1解密后的密码都登不上去。所以还是连上数据库，在数据库里面找更直接。</p>
+<p><img src="/../image/image-20250415204208652.png" alt="image-20250415204208652"></p>
+<p>先连接服务器再连接数据库</p>
+<p>数据库账号和密码</p>
+<p><img src="/../image/image-20250415204357649.png" alt="image-20250415204357649"></p>
+<p><img src="/../image/image-20250415204534243.png" alt="image-20250415204534243"></p>
+<p><img src="/../image/image-20250415204232836.png" alt="image-20250415204232836"></p>
+<p><img src="/../image/image-20250415204133569.png" alt="image-20250415204133569"></p>
+<p>找到13067137585加密后的password：03ddb77b41e0d41a8a186d4fd87c546d6fe41eec</p>
+<p>在网上找了一些解密的网站，发现能解出来密码的网站都要钱（因为所谓逆向解密的方法是在一个很大的人工哈希数据库里去枚举匹配，密文本身是不可能逆向解密的）</p>
+<p>那么现在的思路是：我们可以更改数据库的数据，将简单密码如123456的sha1加密值替换原值<br><img src="/../image/image-20250415210638732.png" alt="image-20250415210638732"></p>
+<p>网站👉<a target="_blank" rel="noopener" href="https://www.jyshare.com/crypto/sha1/">SHA1 在线加密工具 | 菜鸟工具</a> 得到7c4a8d09ca3762af61e59520943dc26494f8941b</p>
+<p><img src="/../image/image-20250415210714068.png" alt="image-20250415210714068"></p>
+<p>登录后可以查看到累计产量</p>
+<h2 id="9-其中打金平台会员组最高溢价比例是多少？-标准格式：10-00"><a href="#9-其中打金平台会员组最高溢价比例是多少？-标准格式：10-00" class="headerlink" title="9.其中打金平台会员组最高溢价比例是多少？[标准格式：10.00]"></a>9.其中打金平台会员组最高溢价比例是多少？[标准格式：10.00]</h2>
       
     </div>
     <footer class="article-footer">

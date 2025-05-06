@@ -71,6 +71,246 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2.Linux基础指令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/03/18/2.Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2025-03-18T10:56:34.000Z" itemprop="datePublished">2025-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/03/18/2.Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/">1.Linux基础指令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="一、文件指令"><a href="#一、文件指令" class="headerlink" title="一、文件指令"></a>一、文件指令</h2><h5 id="1-查看当前文件夹"><a href="#1-查看当前文件夹" class="headerlink" title="1.查看当前文件夹"></a>1.查看当前文件夹</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># pwd</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-查看文件夹中的文件"><a href="#2-查看文件夹中的文件" class="headerlink" title="2.查看文件夹中的文件"></a>2.查看文件夹中的文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-创建文件"><a href="#3-创建文件" class="headerlink" title="3.创建文件"></a>3.创建文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># touch + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-创建多个文件"><a href="#4-创建多个文件" class="headerlink" title="4.创建多个文件"></a>4.创建多个文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># touch + 文件名 &#123;1..10&#125;.txt</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-创建隐藏文件"><a href="#5-创建隐藏文件" class="headerlink" title="5.创建隐藏文件"></a>5.创建隐藏文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># touch .文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-查看所有文件-包括隐藏文件"><a href="#6-查看所有文件-包括隐藏文件" class="headerlink" title="6.查看所有文件(包括隐藏文件)"></a>6.查看所有文件(包括隐藏文件)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls -a</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-竖列显示文件"><a href="#7-竖列显示文件" class="headerlink" title="7.竖列显示文件"></a>7.竖列显示文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls -1</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-显示文件的详细信息"><a href="#8-显示文件的详细信息" class="headerlink" title="8.显示文件的详细信息"></a>8.显示文件的详细信息</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls -l</span><br></pre></td></tr></table></figure>
+
+<h5 id="9-查看某一类类型的文件-如：txt文件"><a href="#9-查看某一类类型的文件-如：txt文件" class="headerlink" title="9.查看某一类类型的文件(如：txt文件)"></a>9.查看某一类类型的文件(如：txt文件)</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ls *.txt</span><br></pre></td></tr></table></figure>
+
+<h5 id="10-删除文件"><a href="#10-删除文件" class="headerlink" title="10.删除文件"></a>10.删除文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rm + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="11-强制删除（系统不会再询问）"><a href="#11-强制删除（系统不会再询问）" class="headerlink" title="11.强制删除（系统不会再询问）"></a>11.强制删除（系统不会再询问）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rm -f + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="12-复制文件（前后文件名不能一样）"><a href="#12-复制文件（前后文件名不能一样）" class="headerlink" title="12.复制文件（前后文件名不能一样）"></a>12.复制文件（前后文件名不能一样）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cp + 要复制的文件名称 + 重新命名的文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="13-更改文件名字"><a href="#13-更改文件名字" class="headerlink" title="13.更改文件名字"></a>13.更改文件名字</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mv + 原文件名 + 新文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="14-查看文件的详细信息"><a href="#14-查看文件的详细信息" class="headerlink" title="14.查看文件的详细信息"></a>14.查看文件的详细信息</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># ls -l    </span><br><span class="line">#第一段的第一个字符，表示文件类型-文件、d目录、1软链接（对应着windows快捷方式）、b块设备（1s/dey，可以看到硬盘sda等）</span><br><span class="line">#第一段第2-4字符，表示该文件所属用户的权限</span><br><span class="line">#第一段第5-7字符，表示该文件所属用户组的权限</span><br><span class="line">#第一段第8-10字符，表示其他用户对该文件的权限</span><br><span class="line"></span><br><span class="line">r 4 代表读权限read</span><br><span class="line">w 2 代表写权限write</span><br><span class="line">x 1 代表可执行权限executable</span><br><span class="line">- 0 空权限位，表示没有这个权限，9位权限不能少，没有的权限就用-代替。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、文件夹指令"><a href="#二、文件夹指令" class="headerlink" title="二、文件夹指令"></a>二、文件夹指令</h2><h5 id="1-创建文件夹（文件夹显示为蓝色）"><a href="#1-创建文件夹（文件夹显示为蓝色）" class="headerlink" title="1.创建文件夹（文件夹显示为蓝色）"></a>1.创建文件夹（文件夹显示为蓝色）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mdkir + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-进入文件夹"><a href="#2-进入文件夹" class="headerlink" title="2.进入文件夹"></a>2.进入文件夹</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd + 文件夹名</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-返回上一层文件夹"><a href="#3-返回上一层文件夹" class="headerlink" title="3.返回上一层文件夹"></a>3.返回上一层文件夹</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd ..</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-返回根目录"><a href="#4-返回根目录" class="headerlink" title="4.返回根目录"></a>4.返回根目录</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cd /</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-删除文件夹"><a href="#5-删除文件夹" class="headerlink" title="5.删除文件夹"></a>5.删除文件夹</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">删除前需要询问</span><br><span class="line"># rm -r + 文件名</span><br><span class="line">立即删除</span><br><span class="line"># rm -r -f + 文件名   简写为：# rm -rf + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-一次性创建多个子目录"><a href="#6-一次性创建多个子目录" class="headerlink" title="6.一次性创建多个子目录"></a>6.一次性创建多个子目录</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># mkdir -p xx/kk/cc</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-移动文件（mv）"><a href="#7-移动文件（mv）" class="headerlink" title="7.移动文件（mv）"></a>7.移动文件（mv）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># mv 222.txt 123.txt    将222.txt文件重命名为123.txt</span><br><span class="line"># mv 123.txt/opt        将当前目录下的123.txt移动到/opt目录下</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、文件编辑"><a href="#三、文件编辑" class="headerlink" title="三、文件编辑"></a>三、文件编辑</h2><h5 id="1-进入文件"><a href="#1-进入文件" class="headerlink" title="1.进入文件"></a>1.进入文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi + 文件名</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/image-20250311204617571.png" alt="image-20250311204617571"></p>
+<blockquote>
+<p>[!NOTE]</p>
+<h6 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h6><p>左，下，上，右，如果键盘上没有上下左右键，可以h，j，k，l<br>进入编辑模式有三个按钮：i、a、0，i在光标位置编辑、a是在光标后一位编辑、o是换行编辑，新起一行<br><strong>ctrl -f</strong>	 下翻一页<br><strong>ctrl -b</strong>	上翻一页<br><strong>ctrl -u</strong>	上翻半页<br><strong>ctrl -d</strong>	下翻半页<br><strong>0</strong>	 跳至行首，不管有无缩进，就是跳到第0个字符<br><strong>^</strong> 	跳至行首的第一个字符<br><strong>$</strong>	 跳至行尾（shift+4)<br><strong>gg</strong>	跳至文首<br><strong>G</strong>	跳至文尾（shift+g）<br><strong>5gg&#x2F;5G</strong>	调至第5行，或者命令行模式：5回车，也是跳到第5行，所以其实操作命令都不是唯一的</p>
+<h6 id="删除复制"><a href="#删除复制" class="headerlink" title="删除复制"></a>删除复制</h6><p><strong>x</strong>	删除单个字符<br><strong>10x</strong>	删除10个字符<br><strong>dd</strong>	删除光标所在行（其实dd是剪切的操作），#使用u撤销之前的操作，使用ctrl+r恢复<br><strong>6dd</strong>	从光标开始往下剧除6行<br><strong>dw</strong>	删除一个单词（word）<br><strong>小p</strong>	粘贴粘贴板的内容到当前行的下面，比如将dd剪切的行黏贴到下面<br><strong>大P</strong>	粘贴粘贴板的内容到当前行的上面<br><strong>yy</strong>	复制行<br><strong>5yy</strong>	复制5行，复制的内容可以通过p\P来黏贴</p>
+<h6 id="搜索和替换"><a href="#搜索和替换" class="headerlink" title="搜索和替换"></a>搜索和替换</h6><p>搜索：<br>    <strong>&#x2F;pattern</strong>   向后搜索字符串pattern	#辅助小n向下和大N向上，一般都是用&#x2F;来搜索<br>    <strong>?pattern</strong>   向前搜索字符串pattern	#辅助小n向上和大N向下，?搜索用的少<br>替换：<br>    <strong>:1369s&#x2F;shell&#x2F;jaden&#x2F;g</strong>	#将第1369行的shell替换为jaden，&#x2F;还可以用#或者@符号来代替：:1369#she11#jaden#g<br>    <strong>:1369,1379s&#x2F;shell&#x2F;jaden&#x2F;g</strong>	#将1369至1379这10行中的shell替换为jaden<br>    <strong>:1369,$s&#x2F;shell&#x2F;jaden&#x2F;g</strong>	#将1369至文末中的shell替换为jaden<br>    <strong>:%s&#x2F;o1d&#x2F;new&#x2F;g</strong>	#搜索整个文件，将所有的old替换为new<br>    <strong>:%s&#x2F;old&#x2F;new&#x2F;gc</strong>	#搜索整个文件，将所有的old替换为new，每次都要你确认是否替换（y&#x2F;n&#x2F;a&#x2F;..），y表示确认替换一个、n表示不替换、a表示全部替换</p>
+</blockquote>
+<h5 id="2-查看文件里的内容"><a href="#2-查看文件里的内容" class="headerlink" title="2.查看文件里的内容"></a>2.查看文件里的内容</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cat + 文件名</span><br><span class="line"># cat -n + 文件名      查询内容直接显示行数</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-显示文件行数"><a href="#3-显示文件行数" class="headerlink" title="3.显示文件行数"></a>3.显示文件行数</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set number</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-倒叙查看"><a href="#4-倒叙查看" class="headerlink" title="4.倒叙查看"></a>4.倒叙查看</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tac + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-查看前n行"><a href="#5-查看前n行" class="headerlink" title="5.查看前n行"></a>5.查看前n行</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># head -n + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-查看倒数后n行"><a href="#6-查看倒数后n行" class="headerlink" title="6.查看倒数后n行"></a>6.查看倒数后n行</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tail -n + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-管道符号"><a href="#7-管道符号" class="headerlink" title="7.管道符号"></a>7.管道符号</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a | b  （可以将前面a指令的执行结果，作为后面b指令的操作内容。）</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-统计行数-统计bin目录下有多少个命令文件"><a href="#8-统计行数-统计bin目录下有多少个命令文件" class="headerlink" title="8.统计行数&#x2F;统计bin目录下有多少个命令文件"></a>8.统计行数&#x2F;统计bin目录下有多少个命令文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># wc -l + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="9-统计字节数"><a href="#9-统计字节数" class="headerlink" title="9.统计字节数"></a>9.统计字节数</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># wc -c + 文件名</span><br></pre></td></tr></table></figure>
+
+<h5 id="10-生成数字序列"><a href="#10-生成数字序列" class="headerlink" title="10.生成数字序列"></a>10.生成数字序列</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># seq a b   生成一个从a到b的数字序列</span><br><span class="line"># seq -w a b  使得生成的数字序列位数一致</span><br></pre></td></tr></table></figure>
+
+<h5 id="11-按行过滤字符串"><a href="#11-按行过滤字符串" class="headerlink" title="11.按行过滤字符串"></a>11.按行过滤字符串</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># grep &#x27;nik&#x27; + 文件名   在（文件名）中含有nik的行过滤出来</span><br><span class="line"># grep -n &#x27;nik&#x27; + 文件名  显示在文件里的行数</span><br><span class="line"># grep -w &#x27;nikta&#x27; + 文件名 精准匹配</span><br></pre></td></tr></table></figure>
+
+<h5 id="12-按列过滤"><a href="#12-按列过滤" class="headerlink" title="12.按列过滤"></a>12.按列过滤</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">取列，$1代表第一列，$2代表第二列，$NF代表最后一列，默认列是由空格分开的</span><br><span class="line"># awk &#x27;[print $1&#125;&#x27; jaden.txt</span><br><span class="line">-F后的表示以什么为标准取列。（以,为标准取列）</span><br><span class="line"># awk -F &#x27;,&#x27; &#123;print $1&#125;&#x27; jaden.txt</span><br></pre></td></tr></table></figure>
+
+<h5 id="13-排序"><a href="#13-排序" class="headerlink" title="13.排序"></a>13.排序</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># sort + 文件名  按照每行首字母来排序。默认排序，先数字后字母</span><br><span class="line"># sort -n  先字母（先小写字母后大写字母）后数字的排序方式</span><br><span class="line"># sort -n -r 反向排序</span><br></pre></td></tr></table></figure>
+
+<h5 id="14-去重"><a href="#14-去重" class="headerlink" title="14.去重"></a>14.去重</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将连续的去重，不会间隔去重，所以最好先排序再去重</span><br><span class="line"># cat test02.txt|sort -n|uniq -c   -c显示重复次数</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、用户编辑"><a href="#四、用户编辑" class="headerlink" title="四、用户编辑"></a>四、用户编辑</h2><h5 id="1-添加用户"><a href="#1-添加用户" class="headerlink" title="1.添加用户"></a>1.添加用户</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># useradd + 用户名</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-查询用户是否存在"><a href="#2-查询用户是否存在" class="headerlink" title="2.查询用户是否存在"></a>2.查询用户是否存在</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># id + 用户名</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-用户删除"><a href="#3-用户删除" class="headerlink" title="3.用户删除"></a>3.用户删除</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># userdel -r + 用户名   -r是将有关的文件全部删除</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-查看有那些用户"><a href="#4-查看有那些用户" class="headerlink" title="4.查看有那些用户"></a>4.查看有那些用户</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-为用户创建密码"><a href="#5-为用户创建密码" class="headerlink" title="5.为用户创建密码"></a>5.为用户创建密码</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># passwd + 用户名</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-添加用户组"><a href="#6-添加用户组" class="headerlink" title="6.添加用户组"></a>6.添加用户组</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># groupadd + 组名</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-修改用户属性"><a href="#7-修改用户属性" class="headerlink" title="7.修改用户属性"></a>7.修改用户属性</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># usermod -L 锁定用户</span><br><span class="line"># usermod -h 查看命令的各种选项</span><br></pre></td></tr></table></figure>
+
+<h5 id="8-移动用户到别的组内"><a href="#8-移动用户到别的组内" class="headerlink" title="8.移动用户到别的组内"></a>8.移动用户到别的组内</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">将一个用户添加到用户组中，千万不能直接用： </span><br><span class="line"># usermod -G groupA </span><br><span class="line">这样做会使你离开其他用户组，仅仅做为 这个用户组 groupA 的成员。 </span><br><span class="line"></span><br><span class="line">应该用 加上 -a 选项： </span><br><span class="line"># usermod -a -G groupA user</span><br><span class="line">( # usermod -G groupA,groupB,groupC user )</span><br><span class="line">-a 代表 append， 也就是 将自己添加到 用户组groupA 中，而不必离开 其他用户组。</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="9-修改文件权限"><a href="#9-修改文件权限" class="headerlink" title="9.修改文件权限"></a>9.修改文件权限</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> -r + 文件名  <span class="comment"># 使该文件的r（读）权限全部失去</span></span><br><span class="line"><span class="built_in">chmod</span> +r + 文件名  <span class="comment"># 加上r权限</span></span><br><span class="line"><span class="built_in">chmod</span> o-r + 文件名 <span class="comment"># 使得某一o（u/r/o）的权限改变</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p><img src="/../image/image-20250313200300141.png" alt="image-20250313200300141"></p>
+<p>权限值</p>
+<table>
+<thead>
+<tr>
+<th>r</th>
+<th><strong>4</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>w</strong></td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td><strong>x</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>-</strong></td>
+<td><strong>0</strong></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>—</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>–x</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>-w-</strong></td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td><strong>-wx</strong></td>
+<td><strong>3</strong></td>
+</tr>
+<tr>
+<td><strong>r–</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td><strong>r-x</strong></td>
+<td><strong>5</strong></td>
+</tr>
+<tr>
+<td><strong>rw-</strong></td>
+<td><strong>6</strong></td>
+</tr>
+<tr>
+<td><strong>rwx</strong></td>
+<td><strong>7</strong></td>
+</tr>
+</tbody></table>
+</blockquote>
+<h5 id="10-更改用户的所有者（只有root用户才能更改）"><a href="#10-更改用户的所有者（只有root用户才能更改）" class="headerlink" title="10.更改用户的所有者（只有root用户才能更改）"></a>10.更改用户的所有者（只有root用户才能更改）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chown + 新名字 + 文件名</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/18/2.Linux%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4/" data-id="cm8las5oc0001acv376kv1v77" data-title="1.Linux基础指令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-3.Linux_Desk" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/03/18/3.Linux_Desk/" class="article-date">
+  <time class="dt-published" datetime="2025-03-18T10:56:34.000Z" itemprop="datePublished">2025-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/03/18/3.Linux_Desk/">2.Linux_Desk</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Linux目录"><a href="#Linux目录" class="headerlink" title="Linux目录"></a>Linux目录</h1><p><img src="/../image/image-20250312200047741.png" alt="image-20250312200047741"></p>
+<p><img src="/../image/image-20250312200155913.png" alt="image-20250312200155913"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/18/3.Linux_Desk/" data-id="cm8las5od0002acv3hixg76dh" data-title="2.Linux_Desk" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-4.其他" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/03/18/4.%E5%85%B6%E4%BB%96/" class="article-date">
@@ -196,6 +436,14 @@
       <ul>
         
           <li>
+            <a href="/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/">2025平航杯</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/26/2025FIC/">2025FIC</a>
+          </li>
+        
+          <li>
             <a href="/2025/04/14/2024%E9%BE%99%E4%BF%A1%E6%9D%AFWP/">2024龙信杯WP</a>
           </li>
         
@@ -205,14 +453,6 @@
         
           <li>
             <a href="/2025/04/02/2025%E7%8D%AC%E8%B1%B8%E6%9D%AF/">2025獬豸杯</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/24/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">网络基础</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/23/7.Linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E5%92%8Csudo/">7.Linux运行级别和sudo</a>
           </li>
         
       </ul>

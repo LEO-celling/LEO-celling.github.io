@@ -6,18 +6,20 @@
   
   <title>Web基础 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Web服务Web介绍">
+  <meta name="description" content="Web服务Web介绍web全称：World Wide Web，全球广域网，也称为万维网。 web项目分为如下架构：C&#x2F;S架构：全称客户端服务端架构，英文Client&#x2F;Server。qq、微信、京东app、各种游戏app或者电脑游戏应用等等。服务端主要负责加工处理数据，客户端主要用来展示数据。有些数据是存储在服务端的，比如商品信息，我们换个电脑查看，商品信息还在，有些数据是存储在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web基础">
 <meta property="og:url" content="http://example.com/2025/04/06/Web%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Web服务Web介绍">
+<meta property="og:description" content="Web服务Web介绍web全称：World Wide Web，全球广域网，也称为万维网。 web项目分为如下架构：C&#x2F;S架构：全称客户端服务端架构，英文Client&#x2F;Server。qq、微信、京东app、各种游戏app或者电脑游戏应用等等。服务端主要负责加工处理数据，客户端主要用来展示数据。有些数据是存储在服务端的，比如商品信息，我们换个电脑查看，商品信息还在，有些数据是存储在">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/image/image-20250414182724021.png">
+<meta property="og:image" content="http://example.com/image/image-20250804181035616.png">
 <meta property="og:image" content="http://example.com/image/image-20250605151930806.png">
 <meta property="og:image" content="http://example.com/image/image-20250605154055220.png">
+<meta property="og:image" content="http://example.com/image/image-20250606172256654.png">
 <meta property="article:published_time" content="2025-04-06T04:48:21.000Z">
-<meta property="article:modified_time" content="2025-06-05T09:18:24.991Z">
+<meta property="article:modified_time" content="2025-08-06T11:04:22.120Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/image/image-20250414182724021.png">
@@ -99,9 +101,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Web服务"><a href="#Web服务" class="headerlink" title="Web服务"></a>Web服务</h1><h2 id="Web介绍"><a href="#Web介绍" class="headerlink" title="Web介绍"></a>Web介绍</h2><span id="more"></span>
-
-<p>web全称：World Wide Web，全球广域网，也称为万维网。</p>
+        <h1 id="Web服务"><a href="#Web服务" class="headerlink" title="Web服务"></a>Web服务</h1><h2 id="Web介绍"><a href="#Web介绍" class="headerlink" title="Web介绍"></a>Web介绍</h2><p>web全称：World Wide Web，全球广域网，也称为万维网。</p>
 <p>web项目分为如下架构：<br>C&#x2F;S架构：全称客户端服务端架构，英文Client&#x2F;Server。qq、微信、京东app、各种游戏app或者电脑游戏应用等等。服务端主要负责加<br>工处理数据，客户端主要用来展示数据。有些数据是存储在服务端的，比如商品信息，我们换个电脑查看，商品信息还在，有些数据是存<br>储在客户端的，比如聊天记录，我们换个电脑在登录qq，如果不做同步，就没有聊天记录了。</p>
 <p>B&#x2F;S架构：是C&#x2F;s架构的一种，只是单独拿出来说，浏览器&#x2F;服务端架构，英文Browser&#x2F;Server，京东网站、淘宝网站等等，基于浏览器访问的网站都是B&#x2F;S架构。这种架构的网站非常多，因为成本也比较便宜，不是每个公司都会开发自己的客户端程序，而且如果每个公司都<br>制作自己客户端程序，我们的手机或者电脑要安装很多的客户端，其实很难受，而浏览器就提供了一个统一的入口，我们只需要下载一个<br>浏览器软件，比如谷歌浏览器、火狐浏览器、360浏览器等等，只要打开一个标签页，输入一个网址就能访问一个网站，那么相当于我们<br>一个软件就访问了多个公司的网站，很方便，这就是统一入口的意思。</p>
 <p>web发展了几个阶段：</p>
@@ -112,9 +112,17 @@
 <p>js：特效，.js文件</p>
 <p>超链接：网页跳转</p>
 <p>flash展示特效，视频播放，小游戏，很多网站已经不支持flash，因为不安全的漏洞太多，现在基本都是html5来支持视频播放，小游戏。</p>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>nginx配置文件（&#x2F;etc&#x2F;nginx）</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><h3 id="nginx的安装"><a href="#nginx的安装" class="headerlink" title="*** nginx的安装***"></a>*** nginx的安装***</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#可以改一下主机名，方便我们记忆：hostnamectl set-hostname webo1</span></span><br><span class="line">安装方法1：</span><br><span class="line">使用epe1源安装</span><br><span class="line"><span class="comment">#yum repolist #查看当前系统的yum仓库有哪些软件包</span></span><br><span class="line">yum install epel-release -y <span class="comment">#安装yum的扩展包</span></span><br><span class="line">yum install nginx -y</span><br><span class="line">systemctl start nginx.service</span><br><span class="line">systemctl <span class="built_in">enable</span> nginx.service</span><br><span class="line"><span class="comment"># netstat -lntup #查看端口占用情况</span></span><br><span class="line"><span class="comment"># 可以看到nginx默认占用了80端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装完之后，如果我们继续安装一个apache的httpd，还是可以安装上的</span></span><br><span class="line"><span class="comment"># yum install httpd -y</span></span><br><span class="line"><span class="comment"># 但是当我们启动httpd的时候会报错</span></span><br><span class="line"><span class="comment"># systemctl start httpd</span></span><br><span class="line"><span class="comment"># 查看它的状态</span></span><br><span class="line"><span class="comment"># systemctl status httpd #可以看到启动失败了</span></span><br><span class="line">[root@web01 ~]# systemctl status httpd</span><br><span class="line">·httpd.service - The Apache HTTP Server</span><br><span class="line">Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled; vendor preset: disabled)</span><br><span class="line">Active: failed (Result: exit-code) since二2023-04-1120:20:47 CST;17s ago</span><br><span class="line">Docs: man:httpd(8)</span><br><span class="line">man:apachect1(8)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">netstat -lntup | grep -E <span class="string">&#x27;:80|:443&#x27;</span>  <span class="comment">#查看80窗口和443窗口</span></span><br><span class="line"><span class="built_in">sudo</span> ss -tulnp | grep -E <span class="string">&#x27;:80|:443&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>nginx配置文件（&#x2F;etc&#x2F;nginx）</p>
 <p>Nginx站点根目录   &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -Ev <span class="string">&#x27;#|^$&#x27;</span> nginx.conf.default &gt; nginx.conf   清除nginx配置文件的‘#’行和空行</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep -Ev <span class="string">&#x27;#|^$&#x27;</span> nginx.conf.default &gt; nginx.conf   清除nginx配置文件的‘#’行和空行</span><br><span class="line">free 查看可用内存</span><br></pre></td></tr></table></figure>
 
 <p><img src="/../image/image-20250414182724021.png" alt="image-20250414182724021"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">listen    80;     Nginx,apche默认端口号80</span><br><span class="line">如果更改了默认端口号需要在网址后面加上更改后的端口号才能正常访问</span><br><span class="line"></span><br><span class="line">server_name    域名</span><br><span class="line">root           站点根目录</span><br></pre></td></tr></table></figure>
@@ -122,6 +130,18 @@
 
 
 <h2 id="http协议介绍"><a href="#http协议介绍" class="headerlink" title="http协议介绍"></a>http协议介绍</h2><p>超文本传输协议</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">过程：想要展示的画面 --&gt; html文字 --&gt; 服务端 --&gt; 互联网 --&gt; 客户端电脑浏览器 --&gt; 解析HTML --&gt; 展示画面</span><br><span class="line"># 软件应用在互联网上数据传输要按照一定的标准格式来加工数据，这个格式就是HTTP协议。</span><br><span class="line"></span><br><span class="line">http协议分为两部分</span><br><span class="line">	请求协议</span><br><span class="line">		请求行</span><br><span class="line">		请求头</span><br><span class="line">		请求数据（请求体）</span><br><span class="line">	响应协议</span><br><span class="line">		响应行</span><br><span class="line">		响应头</span><br><span class="line">		响应数据</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<p>请求头：</p>
+<blockquote>
+<p>GET &#x2F;index.html HTTP&#x2F;1.1</p>
+<p>User-Agent:curl&#x2F;7.29.0</p>
+<p>Host:192.168.18.200</p>
+<p>Accept:&#x2F;</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">请求起始行</span><br><span class="line">GET /index.html HTTP/1.1</span><br><span class="line"><span class="comment"># 第一个字段http请求方法</span></span><br><span class="line"><span class="comment"># 请求的URI/index.html,请求	URL:http://192.168.18.200:80/index.html   	index.html  URI</span></span><br><span class="line"><span class="comment"># HTTP的版本号    #  版本有0.9  1.0  1.1  2.0</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../image/image-20250804181035616.png" alt="image-20250804181035616"></p>
 <h1 id="nginx日志"><a href="#nginx日志" class="headerlink" title="nginx日志"></a>nginx日志</h1><p>现在web服务器都必须要开启日志记录功能，而且记录必须超过半年，这是网络安全法规定的。<a target="_blank" rel="noopener" href="https://www.wangan.com/wenda/6791">https://www.wangan.com/wenda/6791</a><br>之前我们也看过日志，系统的安全日志，就是ssh登录的时候我们看的，如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@web01 conf.d]# cat /var/log/secure</span><br></pre></td></tr></table></figure>
 
@@ -150,6 +170,32 @@
 
 <p><img src="/../image/image-20250605154055220.png" alt="image-20250605154055220"></p>
 <h2 id="ssl证书认证（https）"><a href="#ssl证书认证（https）" class="headerlink" title="ssl证书认证（https）"></a>ssl证书认证（https）</h2><p>http协议访问的网站现在会显示不安全，因为数据默认是明文传输的。  <code>https = http + ssl</code></p>
+<p>下载的域名和证书是对应的，这个不能乱，每个域名只能用它的专有证书。</p>
+<p>nginx下使用我们下载的证书</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将证书放到opt目录的cert下，cert需要我们自已创建，其实名字随便起，一般都叫cert，表示证书的意思</span></span><br><span class="line">[root@web01 conf.d]# <span class="built_in">cd</span> /opt/</span><br><span class="line">[root@web01 opt]# <span class="built_in">mkdir</span> cert</span><br><span class="line">[root@web01 opt]# <span class="built_in">cd</span> cert/</span><br><span class="line">[root@web01 cert]# unzip 9683539_wulaoban.top_nginx.zip</span><br><span class="line">[root@web01 cert]# <span class="built_in">ls</span></span><br><span class="line">9683539_wu1aoban.top.key  9683539_wu1aoban.top.pem  9683539_wu1aoban.top_nginx.zip</span><br></pre></td></tr></table></figure>
+
+<p><code>http的默认端口是80</code>   <code>https的默认端口是443</code></p>
+<p><img src="/../image/image-20250606172256654.png" alt="image-20250606172256654"></p>
+<p>总结</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第一步：申请证书</span><br><span class="line">第二步：修改nginx配置文件</span><br><span class="line">第三步：准备站点代码</span><br><span class="line">第四步：因为没有真实域名，所以我们还需要修改hosts文件，加一个dns解析记录</span><br><span class="line">		192.168.61.139	www.wulaoban.top</span><br><span class="line">第五步：访间https：//www.wulaoban.top/sma11bo11/</span><br></pre></td></tr></table></figure>
+
+<h1 id="return和rewrite跳转"><a href="#return和rewrite跳转" class="headerlink" title="return和rewrite跳转"></a>return和rewrite跳转</h1><p>在输入网址时，不管输入的是http还是https都统一跳转到指定的网站</p>
+<h2 id="1-return"><a href="#1-return" class="headerlink" title="1.return"></a><strong>1.return</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用return跳转</span></span><br><span class="line">server &#123;</span><br><span class="line">		access_log off；#这段配置是专门用来做跳转用的，所以日志就不用记录了，off就是关闭跳转行为的日志记录</span><br><span class="line">		listen	80;</span><br><span class="line">		server_namewww.wulaoban.top;</span><br><span class="line">		location / &#123;</span><br><span class="line">			<span class="built_in">return</span>		302 https：//www.wulaoban.top<span class="variable">$request_uri</span>；#当用户访问www.wulaoban.top的80端口时，自动跳转到https网址。</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-rewrite"><a href="#2-rewrite" class="headerlink" title="2.rewrite"></a>2.rewrite</h2><p>需要写正则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用rewrite跳转</span></span><br><span class="line">server &#123;</span><br><span class="line">		access_log off;</span><br><span class="line">		listen		80;</span><br><span class="line">		server_name	www.wulaoban.top;</span><br><span class="line">		location/&#123;</span><br><span class="line">			rewrite ^/（.*）https://www.wulaoban.top/<span class="variable">$1redirect</span>；# redirect代表302状态码，临时跳转，∧代表网址https://www.wulaoban.top，/（.*）其实就是匹配uri，<span class="variable">$1</span>表示（）中匹配到的内容，也就是.*匹配到的内容</span><br><span class="line">		<span class="comment"># rewrite^/（.*）https：//www.wulaoban.top/$1 permanent； # permanent代表301状态码，永久跳转</span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置了静态ip的这个NAT模式的虚拟机不能上网是因为被NetworkManager给干扰了，关闭一下即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在Centos中有NetworkManager和network两种网络管理工具，如果这两种服务都工作时会产生冲突进而导致机器无法联网。</span></span><br><span class="line">	systemctl stop NetworkManager</span><br><span class="line">	systemctl <span class="built_in">disable</span> NetworkManager</span><br><span class="line"><span class="comment"># 在重启网卡</span></span><br><span class="line">	systemctl restart network</span><br><span class="line"><span class="comment"># route -n就看到有网关了。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置额外的跳转"><a href="#配置额外的跳转" class="headerlink" title="配置额外的跳转"></a>配置额外的跳转</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过cur1可以查看网址的跳转细节，如下</span></span><br><span class="line">cur1 -v http://www.jd.com</span><br><span class="line"><span class="comment">#不管我们访问www.jd.com    jd.com    http：//www.jd.com都会自动跳转到https：//www.jd.com</span></span><br><span class="line"><span class="comment"># 所以我们还需要配置两个跳转，如下</span></span><br><span class="line">server &#123;</span><br><span class="line">		listen 		80;</span><br><span class="line">		server_name www.wulaoban.top;</span><br><span class="line">		location / &#123;</span><br><span class="line">			<span class="built_in">return</span>		302 https://www.wulaoban.top<span class="variable">$request_uri</span>;</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">		listen		80;</span><br><span class="line">		server_name	wulaoban.top；	<span class="comment"># 用户输入不带www的时候也能跳转到https的网址上</span></span><br><span class="line">		location /&#123;</span><br><span class="line">			<span class="built_in">return</span>		302 https://www.wulaoban.top<span class="variable">$request_uri</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="nginx-gzip压缩"><a href="#nginx-gzip压缩" class="headerlink" title="nginx gzip压缩"></a>nginx gzip压缩</h1><p>将下面的所有配置全部拷贝到我们nginx的网站配置上，哪个网站需要配置，就给哪个网站配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	gzip on;				<span class="comment">#开启gzip压缩</span></span><br><span class="line">	gzip_min_length	1k;		<span class="comment">#最小压缩文件，小于1KB的就不压缩了</span></span><br><span class="line">	gzip_buffers	4 32k;	<span class="comment">#内存缓冲，压缩需要提前规划一些内存空间出来，4个32KB的空间</span></span><br><span class="line">	gzip_http_version 1.1;	<span class="comment">#http版本，默认是1.0，1.1需要自已声明，不过现在比较新的nginx应该默认就是1.1了</span></span><br><span class="line">	gzip_comp_level 9;		<span class="comment">#压缩等级，等级数1-9，压缩等级越高，压缩用的时长越长，但是压缩的就越小</span></span><br><span class="line">	gzip_types text/html text/css text/xml application/javascript；	<span class="comment">#压缩的文件类型，这些类型的文件才会被压缩，为什么压缩的都是文本文件，而不压缩图片、视频和音频等多媒体文件呢，因为文本文件的压缩比是最高的，值得压缩。比如jgp图片文件，这种格式的图片本身就是压缩过的文件，再压缩的意义不大。</span></span><br><span class="line">gzip_vary on;				<span class="comment">#http响应头添加gzip标识</span></span><br><span class="line">gzip_disable <span class="string">&quot;MSIE [1-7]\.&quot;</span>;	<span class="comment">#遇到IE浏览器1-7取消gzip压缩</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="nginx目录浏览功能"><a href="#nginx目录浏览功能" class="headerlink" title="nginx目录浏览功能"></a>nginx目录浏览功能</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">autoindex on；# 开启目录浏览功能</span><br><span class="line">autoindex_exact_size off；# 显示文件大小的时候带单位</span><br></pre></td></tr></table></figure>
+
+<h1 id="nginx访问控制allow和deny"><a href="#nginx访问控制allow和deny" class="headerlink" title="nginx访问控制allow和deny"></a>nginx访问控制allow和deny</h1><p>访问控制行为分为两种：允许（加白）和禁止（加黑）</p>
 
       
     </div>
@@ -201,7 +247,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
     </div>
   </div>
 
@@ -212,6 +258,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+          </li>
         
           <li>
             <a href="/2025/05/06/2024%E7%9B%98%E5%8F%A4%E7%9F%B3/">2024盘古石</a>
@@ -227,10 +277,6 @@
         
           <li>
             <a href="/2025/04/14/2024%E9%BE%99%E4%BF%A1%E6%9D%AFWP/">2024龙信杯WP</a>
-          </li>
-        
-          <li>
-            <a href="/2025/04/06/Web%E5%9F%BA%E7%A1%80/">Web基础</a>
           </li>
         
       </ul>

@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://example.com/image/image-20250605154055220.png">
 <meta property="og:image" content="http://example.com/image/image-20250606172256654.png">
 <meta property="article:published_time" content="2025-04-06T04:48:21.000Z">
-<meta property="article:modified_time" content="2025-08-06T11:04:22.120Z">
+<meta property="article:modified_time" content="2025-08-12T02:49:13.605Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/image/image-20250414182724021.png">
@@ -196,6 +196,14 @@
 <h1 id="nginx目录浏览功能"><a href="#nginx目录浏览功能" class="headerlink" title="nginx目录浏览功能"></a>nginx目录浏览功能</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">autoindex on；# 开启目录浏览功能</span><br><span class="line">autoindex_exact_size off；# 显示文件大小的时候带单位</span><br></pre></td></tr></table></figure>
 
 <h1 id="nginx访问控制allow和deny"><a href="#nginx访问控制allow和deny" class="headerlink" title="nginx访问控制allow和deny"></a>nginx访问控制allow和deny</h1><p>访问控制行为分为两种：允许（加白）和禁止（加黑）</p>
+<p>访问控制有两个方式，一种是在OSI模型的四层传输层，一种是在第七层应用层。主机防火墙就是在四层控制，nginx就是在七层控制。</p>
+<p>演示访问控制，需要开启防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#示例1：防火墙直接禁用ip地址，这是基于四层的效果</span></span><br><span class="line"> <span class="comment"># systemctl start firewalld.service	#开启主机防火墙</span></span><br><span class="line"><span class="comment"># 拉黑某些ip地址：</span></span><br><span class="line">	<span class="comment"># firewall-cmd --add-rich-rule=&#x27;rule family=ipv4 source address=&quot;116.255.196.0/24&quot; drop&#x27;</span></span><br><span class="line">	<span class="comment"># firewall-cmd --add-rich-rule=&#x27;rule family=ipv4 source address=&quot;123.44.22.55&quot; drop&#x27;</span></span><br><span class="line"><span class="comment">#比如查看一下当前系统远程连接了哪些ip地址</span></span><br><span class="line">[root@webo1 conf.d]# w</span><br><span class="line">  12:52:50 up4:11,3 <span class="built_in">users</span>,load average: 0.00, 0.01, 0.04</span><br><span class="line">USER	TTY		FROM			LOGIN@	IDLE	JCPU 	PCPU 	WHAT</span><br><span class="line">root	tty1					08:41	4:11m	0.01s	0.01s 	-bash</span><br><span class="line">root	pts/0	192.168.61.1	08:52	2.00s	0.12s	0.00s 	w</span><br><span class="line">root	pts/1	192.168.61.1	08:43	57:22	0.07s	0.07s 	-bash</span><br><span class="line"><span class="comment">#可以看到192.168.61.1，这是我们NAT模式的网卡的网关，也就是说我们的物理机其实是使用的VMnet8虚拟网卡的ip地址进行连接的，如果我们通过防火墙将这个ip地址给封了，那么再建立新的ssh连接应该就连不上这个虚拟机了。</span></span><br><span class="line"><span class="comment"># firewall-cmd --add-rich-rule=&#x27;rule family=ipv4 source address=&quot;192.168.61.1&quot; drop&#x27;</span></span><br><span class="line"><span class="comment">#基于四层的封锁，所有的网站都访问不了、ssh、ftp等等都不行了。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="nginx-location和优先级"><a href="#nginx-location和优先级" class="headerlink" title="nginx location和优先级"></a>nginx location和优先级</h1><p>nginx网站配置可以配置多个location，单独对某些访问路径进行控制</p>
+<p>讲下面这个页面的a目录的访问加一个basic认证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server  &#123;</span><br><span class="line">	listen		80 default_server;</span><br><span class="line">	server_namec.jaden.com;</span><br><span class="line">	access_log /opt/nginx/c.jaden.com_log jaden;</span><br><span class="line">	autoindex on;</span><br><span class="line">	autoindex_exact_size off;</span><br><span class="line">	location /&#123;</span><br><span class="line">		root	/web/three;</span><br><span class="line">		index	index.html index.htm;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="comment">#加上如下内容：</span></span><br><span class="line">	location /a</span><br><span class="line">		auth_basic <span class="string">&quot;b.jaden.com&quot;</span>;</span><br><span class="line">		auth_basic_user_file/etc/nginx/htpasswd;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -247,7 +255,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
     </div>
   </div>
 
@@ -260,6 +268,14 @@
       <ul>
         
           <li>
+            <a href="/2025/09/13/%E9%80%86%E5%90%91%E5%88%86%E4%BA%AB/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">MySQL数据库</a>
+          </li>
+        
+          <li>
             <a href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
           </li>
         
@@ -269,14 +285,6 @@
         
           <li>
             <a href="/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/">2025平航杯</a>
-          </li>
-        
-          <li>
-            <a href="/2025/04/26/2025FIC/">2025FIC</a>
-          </li>
-        
-          <li>
-            <a href="/2025/04/14/2024%E9%BE%99%E4%BF%A1%E6%9D%AFWP/">2024龙信杯WP</a>
           </li>
         
       </ul>

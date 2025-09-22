@@ -71,6 +71,137 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-逆向分享" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/09/13/%E9%80%86%E5%90%91%E5%88%86%E4%BA%AB/" class="article-date">
+  <time class="dt-published" datetime="2025-09-13T11:03:45.029Z" itemprop="datePublished">2025-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="APK格式"><a href="#APK格式" class="headerlink" title="APK格式"></a>APK格式</h3><p>lib</p>
+<p>assets</p>
+<p>dex</p>
+<p>androidManifest.xml</p>
+<h3 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h3><p>HttpCanary</p>
+<h3 id="脱壳"><a href="#脱壳" class="headerlink" title="脱壳"></a>脱壳</h3><p>frida-dexdump</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install frida-dexdump</span><br><span class="line"></span><br><span class="line">frida-dexdump -U -f 包名</span><br><span class="line">frida-dexdump -UF -d -o .</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43767456/article/details/134444987">https://blog.csdn.net/weixin_43767456/article/details/134444987</a></p>
+<h3 id="frida"><a href="#frida" class="headerlink" title="frida"></a>frida</h3><p>需要python3.6以上的环境，下载几个python库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install frida-tools</span><br><span class="line">pip install loguru click</span><br><span class="line">pip install hexdump</span><br></pre></td></tr></table></figure>
+
+
+
+<p>配置好本地Frida之后，查看frida版本，查看手机cpu类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frida --version</span><br><span class="line"></span><br><span class="line">adb shell</span><br><span class="line">getprop ro.product.cpu.abi</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="配置frida-server"><a href="#配置frida-server" class="headerlink" title="配置frida-server"></a>配置frida-server</h6><p>去下载对应版本的对应类型的frida-server</p>
+<p>27042</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></p>
+<p>下载对应版本下载到手机的 <code>/data/local/tmp/</code> 目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">进入手机端命令：adb shell</span><br><span class="line">切换获取手机的root权限：Su</span><br><span class="line">查找文件是否在手机中：cd/data/local/tmp/</span><br><span class="line">查看路径下的文件并看文件的权限：Is-l</span><br><span class="line">拥有root权限更改文件的权限为777： chmod 777 frida-server-16.5.2-android-x86</span><br><span class="line">在手机中启动运行该文件：./frida-server-14.0.5-android-x86 &amp;</span><br><span class="line">电脑运行检查手机端服务是否开启成功：frida-ps -U</span><br><span class="line">windows运行端口转发到PC：adb forward tcp:27043 tcp:27043</span><br></pre></td></tr></table></figure>
+
+
+
+<p>fridaAPI：<a target="_blank" rel="noopener" href="https://frida.re/docs/javascript-api/">https://frida.re/docs/javascript-api/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-U</span><br><span class="line">-F</span><br><span class="line">-l</span><br><span class="line">-o</span><br><span class="line">-f</span><br><span class="line">-p</span><br></pre></td></tr></table></figure>
+
+
+
+<p>frida脚本</p>
+<h3 id="objection"><a href="#objection" class="headerlink" title="objection"></a>objection</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install objection</span><br></pre></td></tr></table></figure>
+
+
+
+<p>启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objection -g 包名 explore</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-N： 表示网络连接，不加表示USB连接</span><br><span class="line">-h： 主机名，默认是 127.0.0.1</span><br><span class="line">-p： 端口，默认是 27042</span><br><span class="line">-g： 指定进程名\包名</span><br><span class="line"></span><br><span class="line">explore：启动objection交互界面，explore也有选项，下面再说</span><br><span class="line">patchapk</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">列出所有已加载的类（常用）</span><br><span class="line">	android hooking list classes</span><br><span class="line">	</span><br><span class="line">在所有已加载的类中搜索包含特定关键字的类（常用）</span><br><span class="line">	android hooking search classes &lt;pattern&gt;</span><br><span class="line">	</span><br><span class="line">列出类的所有方法（常用）</span><br><span class="line">	android hooking list class_methods &lt;路径.类名&gt;</span><br><span class="line">	</span><br><span class="line">hook类的所有方法（不包括构造方法）</span><br><span class="line">	android hooking watch class &lt;路径.类名&gt;</span><br><span class="line">	</span><br><span class="line">hook类的构造方法</span><br><span class="line">	android hooking watch class_method &lt;路径.类名.$init&gt;</span><br><span class="line">	</span><br><span class="line">默认是hook方法的所有重载（常用）</span><br><span class="line">	android hooking watch class_method &lt;路径.类名.方法名&gt;</span><br><span class="line">	</span><br><span class="line">hook方法的参数、返回值和调用栈（常用）</span><br><span class="line">	android hooking watch class_method &lt;路径.类名.方法名&gt; --dump-args --dump-return --dump-backtrace</span><br><span class="line">	</span><br><span class="line">hook单个重载函数，需要指定参数类型，多个参数需要用逗号分隔</span><br><span class="line">	android hooking watch class_method &lt;路径.类名.方法名&gt; &quot;&lt;参数类型&gt;&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="jadx"><a href="#jadx" class="headerlink" title="jadx"></a>jadx</h3><p><a target="_blank" rel="noopener" href="https://github.com/skylot/jadx/releases">https://github.com/skylot/jadx/releases</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/09/13/%E9%80%86%E5%90%91%E5%88%86%E4%BA%AB/" data-id="cmfv2uzin00005sv3e993710s" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-MySQL数据库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time class="dt-published" datetime="2025-08-12T09:09:52.000Z" itemprop="datePublished">2025-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">MySQL数据库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="数据库的分类"><a href="#数据库的分类" class="headerlink" title="数据库的分类"></a>数据库的分类</h1><p>关系型数据库和非关系类数据库</p>
+<h2 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h2><p>常见的关系型数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">1、oracle数据库</span><br><span class="line">	Oracle前身叫sDL、由LarryE1lison和两个变成任意在1977创办，他们开发了主机的拳头产品，在市场上大量销售。0racle公司是最早开发关系型数据库的厂商之一，其产品支持最广泛的操作系统平台。目前oracle关系数据库产品	的市场占有率数一数二。</span><br><span class="line">	oracle公司是目前全球最大的数据库软件公司，也是近年业务增长极为迅速的软件提供与服务商</span><br><span class="line">	主要应用范围：传统大企业、大公司、政府、金融、证券等。</span><br><span class="line">	版本升级：oracle8i，oracle9i，oracle10g，oracle11g，oracle12c</span><br><span class="line">2、MySQL</span><br><span class="line">	DBA:数据库管理员</span><br><span class="line">	MySQL被广泛的应用在Internet上的大中小型网站中。由于体积小、速度快、总体拥有成本低，开放源代码</span><br><span class="line">	</span><br><span class="line">3、MariaDB数据库</span><br><span class="line">	MariaDB数据库管理系统是MySQL数据库的一个分支，主要由开元社区维护，采用GPL授权许可。开发这个MariaDB的原因之一是：甲骨文公司收购了MySQL后，有MySQL闭源的潜在风险，因此MySQL开元社区采用分支的方式来避开这个风险。</span><br><span class="line">	</span><br><span class="line">4、SQL Server数据库</span><br><span class="line">	MicrosoftsQL Server是微软公司开发的大型关系数据库系统。SQL Server的功能比较全面，效率高，可以作为中型企业或单位的数据库平台。SQL Server可以与winodws操作系统紧密集成，不论是应用程序开发速度还是系统事务处理运行速度，都得到较大的提升，对于在Windows平台上开发的各种企业级信息管理系统来说，不论是c/s（客户机/服务器）架构还是B/s（浏览器/服务器）架构。SQL Server都是一个很好的选择。SQL Server的缺点是只能在windows系统下运行，简称Mssql</span><br><span class="line">	</span><br><span class="line">5、Access数据库</span><br><span class="line">	Access是入门级小型桌面数据库，性能安全性都很一般，可供个人管理或小型企业只用</span><br><span class="line">	可以方便地生成各种数据对象，利用存储的数据建立窗体和报表</span><br><span class="line">	作为office套件的一部分，可以与office集成，实现无缝连接</span><br><span class="line">	Access主要适用于中小企业应用系统，或作为客户机/服务器系统中的客户端数据库。</span><br><span class="line">6、sqlite:</span><br><span class="line">	SQLite，是一款轻小型的数据库，一般测试一些功能的时候，会使用一下，但是这个数据库不支持多用户所以很少用在生产上。</span><br><span class="line">7、PostgreSQL:</span><br><span class="line">	MySQL与PostgreSQL都是开源、免费、强大、且功能丰富的数据库，PostgreSQL标榜自己是世界上最先进的开源数据库，很多企业也都喜欢用这个数据库。</span><br><span class="line">	</span><br><span class="line">6、其他不常用关系型数据库</span><br><span class="line">	DB2、Informix、Sybase等。这些关系型数据库逐步的淡化了普通运维的实现，特别是互联网公司几乎见不到</span><br></pre></td></tr></table></figure>
+
+<h2 id="非关系型数据库（DBMS）"><a href="#非关系型数据库（DBMS）" class="headerlink" title="非关系型数据库（DBMS）"></a>非关系型数据库（DBMS）</h2><p>非关系型数据库也被称为NoSQL数据库，NOSQL的本意是“Not Only SQL”。</p>
+<p>NoSQL的产生并不是要彻底地否定关系型数据库，而是作为传统关系型数据库的一个有效补充。NOSQL数据库在特定的场景下可以发挥<br>出难以想象的高效率和高性能。随着互联网Web2.0网站的星期，传统的关系型数据库在应付web2,0网站，特别是对于规模日益扩大的海<br>量数据，超大规模和高并发的微博、微信、SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">1、memcached</span><br><span class="line"></span><br><span class="line">	Memcaced是一个开源的、高性能的、具有分布式内存对象的缓存系统。通过它可以减轻数据库负载，加速动态的web应用，最初版本由</span><br><span class="line">LiveJoumal的BradFitzpatrick在2003年开发完成。目前全球有非常多的用户都在使用它来架构主机的大负载网站或提升主机的高访问网站</span><br><span class="line">的响应速度。</span><br><span class="line">	官网：http://memcached.org/</span><br><span class="line">	由于memcached为纯内存缓存软件。但是最近几年逐渐被其他的可以持久化产品替代如Redis。</span><br><span class="line">	</span><br><span class="line">2、Redis</span><br><span class="line">	和Memcached类似：但redis支持的存储value类型相对更多，包括string（字符串）、list（链表）、Set（集合）和zset（有序集合）等。 </span><br><span class="line">	它提供了Python、Ruby、Erlang、PHP客户端，使用方便。</span><br><span class="line">	官方：http://www.redis.io/documentation</span><br><span class="line">	redis特点：</span><br><span class="line">	1）支持内存缓存</span><br><span class="line">	2）支持持久化存储</span><br><span class="line">	3）数据库类型更丰富</span><br><span class="line">	4）支持主从集群、分布式</span><br><span class="line">	5）支持队列等特殊功能</span><br><span class="line">	应用：缓存从存取memcached更改存取redis</span><br><span class="line">	</span><br><span class="line">3、MongoDB (Document-oriented)</span><br><span class="line">	MongoDB是一个介于关系型数据库和非关系型数据库之间的产品，是非关系型数据库当中功能最丰富，最像关系数据库的。</span><br><span class="line">特点：</span><br><span class="line">	高性能、易部署、易使用、存储数据非常方便</span><br><span class="line">	</span><br><span class="line">4、Cassandra</span><br><span class="line">	ApacheCassndra是一套开源分布式存储系统。它最初由Facebook开发，用于存储特别大的数据。Facebook目前在使用此系统。</span><br><span class="line"></span><br><span class="line">5、其他不常用非关系型数据库</span><br><span class="line">	HBase、MemcacheDB、BerkeleyDB、Tokyo Cabinet\Tokyo Tyrant (ttserver)</span><br><span class="line">	ttserver持久化输出，缺点存储2千万条性能下降（由日本人发明）</span><br></pre></td></tr></table></figure>
+
+<h1 id="MySQL基础管理"><a href="#MySQL基础管理" class="headerlink" title="MySQL基础管理"></a>MySQL基础管理</h1><p>数据库的操作单元</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">库</span><br><span class="line">表</span><br><span class="line">列</span><br><span class="line">记录（行数据）</span><br></pre></td></tr></table></figure>
+
+<p>基础操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看数据库</span></span><br><span class="line">	show databases;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建数据库：CREATE DATABASE数据库名charSetutf8；</span></span><br><span class="line">	create database wordpress;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">删除数据库</span></span><br><span class="line">	drop database wordpress;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">切换数据库</span></span><br><span class="line">	use mysql</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看表</span></span><br><span class="line">	show tables;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">创建表，一会再说</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">删除表</span></span><br><span class="line">	drop table 表名；</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看表结构</span></span><br><span class="line">	desc 表名</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看所有数据</span></span><br><span class="line">	select * from user;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查询指定列的数据</span></span><br><span class="line">	select user,host,Password from user;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查询指定列的数据的头3h</span></span><br><span class="line">	Select user,host,Password from user limit 3 ;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">授权，默认情况下mysql和mariadb都是不允许root用户远程连接登录的。</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">grant操作（增删改查，all） on 库名.表名 to 用户名@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;密码&#x27;</span></span></span><br><span class="line">	grant all on *.* to root@&#x27;10.0.0.%&#x27; identified by &#x27;123456&#x27;;</span><br><span class="line">	grant a11 on wordpress.* to wordpress@&#x27;10.0.0.%&#x27; identified by &#x27;123456′;</span><br><span class="line">	grant a11 on wordpress.menu to jaden@&#x27;10.0.0.%&#x27; identified by &#x27;123456&#x27;；#jaden用户只能对menu表进行操作</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">网站代码中连接数据库的时候使用的是哪个用户，那个用户有什么权限，那么网站代码就能对数据库做什么操作。</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用普通用户登录</span></span><br><span class="line">mysql -u wordpress -p123456-h 10.0.0.7</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">默认的数据文件存储位置是</span></span><br><span class="line">/var/1ib/mysql/</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">/root/.mysql_history 记录了我们做的历史sql指令</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改用户密码</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安全初始化，可以修改root用户的密码</span></span><br><span class="line">方式1：mysql_secure_installation#但是这个动作做完之后，还需要给root设置远程登录权限才能远程用root用户登录</span><br><span class="line">方式2：</span><br><span class="line">	格式：mysql&gt; set password for 用户名@localhost=password（&#x27;新密码&#x27;）；</span><br><span class="line">	例子：mysql&gt; set password for root@localhost=password(&#x27;123&#x27;);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="cmfv2uzio00015sv35jvccqxi" data-title="MySQL数据库" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-SQL注入" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/" class="article-date">
@@ -403,6 +534,14 @@
 <h1 id="nginx目录浏览功能"><a href="#nginx目录浏览功能" class="headerlink" title="nginx目录浏览功能"></a>nginx目录浏览功能</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">autoindex on；# 开启目录浏览功能</span><br><span class="line">autoindex_exact_size off；# 显示文件大小的时候带单位</span><br></pre></td></tr></table></figure>
 
 <h1 id="nginx访问控制allow和deny"><a href="#nginx访问控制allow和deny" class="headerlink" title="nginx访问控制allow和deny"></a>nginx访问控制allow和deny</h1><p>访问控制行为分为两种：允许（加白）和禁止（加黑）</p>
+<p>访问控制有两个方式，一种是在OSI模型的四层传输层，一种是在第七层应用层。主机防火墙就是在四层控制，nginx就是在七层控制。</p>
+<p>演示访问控制，需要开启防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#示例1：防火墙直接禁用ip地址，这是基于四层的效果</span></span><br><span class="line"> <span class="comment"># systemctl start firewalld.service	#开启主机防火墙</span></span><br><span class="line"><span class="comment"># 拉黑某些ip地址：</span></span><br><span class="line">	<span class="comment"># firewall-cmd --add-rich-rule=&#x27;rule family=ipv4 source address=&quot;116.255.196.0/24&quot; drop&#x27;</span></span><br><span class="line">	<span class="comment"># firewall-cmd --add-rich-rule=&#x27;rule family=ipv4 source address=&quot;123.44.22.55&quot; drop&#x27;</span></span><br><span class="line"><span class="comment">#比如查看一下当前系统远程连接了哪些ip地址</span></span><br><span class="line">[root@webo1 conf.d]# w</span><br><span class="line">  12:52:50 up4:11,3 <span class="built_in">users</span>,load average: 0.00, 0.01, 0.04</span><br><span class="line">USER	TTY		FROM			LOGIN@	IDLE	JCPU 	PCPU 	WHAT</span><br><span class="line">root	tty1					08:41	4:11m	0.01s	0.01s 	-bash</span><br><span class="line">root	pts/0	192.168.61.1	08:52	2.00s	0.12s	0.00s 	w</span><br><span class="line">root	pts/1	192.168.61.1	08:43	57:22	0.07s	0.07s 	-bash</span><br><span class="line"><span class="comment">#可以看到192.168.61.1，这是我们NAT模式的网卡的网关，也就是说我们的物理机其实是使用的VMnet8虚拟网卡的ip地址进行连接的，如果我们通过防火墙将这个ip地址给封了，那么再建立新的ssh连接应该就连不上这个虚拟机了。</span></span><br><span class="line"><span class="comment"># firewall-cmd --add-rich-rule=&#x27;rule family=ipv4 source address=&quot;192.168.61.1&quot; drop&#x27;</span></span><br><span class="line"><span class="comment">#基于四层的封锁，所有的网站都访问不了、ssh、ftp等等都不行了。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="nginx-location和优先级"><a href="#nginx-location和优先级" class="headerlink" title="nginx location和优先级"></a>nginx location和优先级</h1><p>nginx网站配置可以配置多个location，单独对某些访问路径进行控制</p>
+<p>讲下面这个页面的a目录的访问加一个basic认证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server  &#123;</span><br><span class="line">	listen		80 default_server;</span><br><span class="line">	server_namec.jaden.com;</span><br><span class="line">	access_log /opt/nginx/c.jaden.com_log jaden;</span><br><span class="line">	autoindex on;</span><br><span class="line">	autoindex_exact_size off;</span><br><span class="line">	location /&#123;</span><br><span class="line">		root	/web/three;</span><br><span class="line">		index	index.html index.htm;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="comment">#加上如下内容：</span></span><br><span class="line">	location /a</span><br><span class="line">		auth_basic <span class="string">&quot;b.jaden.com&quot;</span>;</span><br><span class="line">		auth_basic_user_file/etc/nginx/htpasswd;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -505,92 +644,6 @@
 
 
   
-    <article id="post-7.Linux运行级别和sudo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/03/23/7.Linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E5%92%8Csudo/" class="article-date">
-  <time class="dt-published" datetime="2025-03-23T04:56:25.000Z" itemprop="datePublished">2025-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/03/23/7.Linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E5%92%8Csudo/">7.Linux运行级别和sudo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Linux运行级别"><a href="#Linux运行级别" class="headerlink" title="Linux运行级别"></a>Linux运行级别</h1>
-        
-          <p class="article-more-link">
-            <a href="/2025/03/23/7.Linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E5%92%8Csudo/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/23/7.Linux%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB%E5%92%8Csudo/" data-id="cm8las5of0005acv3f4ra9bc7" data-title="7.Linux运行级别和sudo" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-6.三剑客和正则表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/03/20/6.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2025-03-20T13:10:47.000Z" itemprop="datePublished">2025-03-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/03/20/6.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">5.三剑客和正则表达式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="三剑客和正则表达式"><a href="#三剑客和正则表达式" class="headerlink" title="三剑客和正则表达式"></a>三剑客和正则表达式</h1>
-        
-          <p class="article-more-link">
-            <a href="/2025/03/20/6.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/20/6.%E4%B8%89%E5%89%91%E5%AE%A2%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="cm8las5oe0004acv3abunb5uz" data-title="5.三剑客和正则表达式" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -614,7 +667,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
     </div>
   </div>
 
@@ -627,6 +680,14 @@
       <ul>
         
           <li>
+            <a href="/2025/09/13/%E9%80%86%E5%90%91%E5%88%86%E4%BA%AB/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">MySQL数据库</a>
+          </li>
+        
+          <li>
             <a href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
           </li>
         
@@ -636,14 +697,6 @@
         
           <li>
             <a href="/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/">2025平航杯</a>
-          </li>
-        
-          <li>
-            <a href="/2025/04/26/2025FIC/">2025FIC</a>
-          </li>
-        
-          <li>
-            <a href="/2025/04/14/2024%E9%BE%99%E4%BF%A1%E6%9D%AFWP/">2024龙信杯WP</a>
           </li>
         
       </ul>

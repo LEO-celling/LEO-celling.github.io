@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/image/image-20250309144907586-1742102517864-2.png">
 <meta property="article:published_time" content="2025-03-18T10:56:34.000Z">
-<meta property="article:modified_time" content="2025-05-09T06:19:16.277Z">
+<meta property="article:modified_time" content="2025-10-14T11:48:24.912Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/image/image-20250309144907586-1742102517864-2.png">
@@ -100,6 +100,19 @@
         <h1 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h1><span id="more"></span>
 
 <p>x86_64是x64的简写，表示86系列的cpu，64位的处理器</p>
+<h1 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h1><h3 id="Internet-上的保留地址"><a href="#Internet-上的保留地址" class="headerlink" title="Internet 上的保留地址"></a>Internet 上的保留地址</h3><p>互联网由数十亿台设备组成。它们使用IP 地址相互识别和通信，在概念上类似于电话号码。已使用数十年的 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=195142700&content_type=Article&match_order=1&q=Internet+%E5%8D%8F%E8%AE%AE%E7%89%88%E6%9C%AC+4&zhida_source=entity">Internet 协议版本 4</a> (IPv4) 允许近 43 亿个此类地址。IPv4 的继任者<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=195142700&content_type=Article&match_order=1&q=IPv6&zhida_source=entity">IPv6</a>拥有超过 10^38 个可用地址——足以让地球上的每一粒沙子、可观测宇宙中的每颗恒星以及每个人体内的每一个原子都有一个唯一的 IP 地址，而且还剩下很多超过。</p>
+<p>尽管现在有大量可用的 IP 地址，但为了防止编程冲突的特定目的，保留一些地址，甚至是地址范围（通常称为块）是很方便的。为特定目的保留地址可以很容易地为不同的 IP 地址建立一般规则和行为。与大多数 Internet 标准一样，保留 IP 地址是通过称为 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=195142700&content_type=Article&match_order=1&q=Requests+for+Comment&zhida_source=entity">Requests for Comment</a> 或 RFC 的文档建立的。</p>
+<p>事实证明，让计算机与自己而不是另一台计算机对话通常很有用。为此，您需要一个具有一些独特属性的特殊保留 IP 地址 — 127.0.0.1。</p>
+<h3 id="什么是-127-0-0-1"><a href="#什么是-127-0-0-1" class="headerlink" title="什么是 127.0.0.1"></a>什么是 127.0.0.1</h3><p>127.0.0.1 是主机环回地址。主机环回是指地址为 127.0.0.1 的任何数据包都不应该离开计算机（主机），发送它——而不是被发送到本地网络或互联网，它只是被自己“环回”，并且发送数据包的计算机成为接收者。</p>
+<p><a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=195142700&content_type=Article&match_order=1&q=RFC+1122&zhida_source=entity">RFC 1122</a> 明确指出“内部主机环回地址。这种形式的地址不得出现在主机之外。” 因此，拾取定向到 127.0.0.1 的流量的路由器应该立即丢弃数据包。这可确保没有专门用于主机上的流量进入 Internet。</p>
+<p>虽然它是最常见和最著名的，但 127.0.0.1 只是一个大块中的一个地址，127.0.0.0 – 127.255.255.255，在RFC 6890中保留用于环回目的。</p>
+<p>IPv6 也有一个环回地址。完全写出它是 0000:0000:0000:0000:0000:0000:0000:0001，但为了方便起见，它通常被截断为 ::1。</p>
+<h3 id="如何使用-127-0-0-1"><a href="#如何使用-127-0-0-1" class="headerlink" title="如何使用 127.0.0.1"></a>如何使用 127.0.0.1</h3><p>那么为什么要让数据包循环回同一台计算机呢？有一些常见的用例。</p>
+<p>第一个是测试目的——如果您最终打算通过 LAN 或 Internet 托管服务器或网站，您可以在同一台计算机上运行服务器和客户端，以确保所有基础首先正常工作。例如，如果您在本地计算机上托管了一个专用的 Minecraft 服务器，您可以通过输入 127.0.0.1 作为 IP 地址来连接到它。这同样适用于几乎所有本地托管的服务器。消除与网络相关的复杂性，例如端口配置和延迟问题，可以提高故障排除过程的效率。</p>
+<p>您也可能只想在本地设备上运行<em>只有您可以访问的服务。</em>这在自托管社区中相对常见——将服务不必要地暴露给外部设备和威胁是没有意义的。</p>
+<p>hosts 文件可用于指定与给定域名对应的 IP 地址。从功能上讲，这使您可以在hosts 文件中使用 127.0.0.1 来阻止 Web 流量。例如，如果您告诉您的计算机在 127.0.0.1 上查找 <a href="https://link.zhihu.com/?target=http://facebook.com">http://facebook.com</a>，它将无法连接，从而有效地阻止它，除非您记住了 <a href="https://link.zhihu.com/?target=http://facebook.com">http://facebook.com</a> 的实际 IP。</p>
+<h3 id="什么是本地主机"><a href="#什么是本地主机" class="headerlink" title="什么是本地主机"></a>什么是本地主机</h3><p>在大多数情况下，<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=195142700&content_type=Article&match_order=1&q=localhost&zhida_source=entity">localhost</a> 只是默认情况下引用 127.0.0.1 的简写。但它可以更改——如果你编辑你的主机文件，你可以让 localhost 引用任何 <a href="https://link.zhihu.com/?target=http://127.XXX">http://127.XXX</a> 保留地址。您还可以创建其他 localhost，例如 localhost2，例如可以引用 127.0.0.2。</p>
+<p>随着 IPv6 被更快地采用，可能越来越多的设备将使用 ::1 作为默认环回地址。但是，127.0.0.1 已经使用了几十年，并且在可预见的未来仍将继续使用。</p>
 <h1 id="重要文件"><a href="#重要文件" class="headerlink" title="重要文件"></a>重要文件</h1><p><strong>Program Files</strong>:  软件程序存放目录，64位程序文件默认会安装到这个目录下，安装的时候是可以自行修改安装目录的，如果你安装的某个软件的时候，没有特意的修改安装路径，那么就去这个目录中找</p>
 <p><strong>Program Files (x86)</strong>:  32位程序文件默认会安装到这个目录下，x86是x86_32的简写，x64是x86_64的简写</p>
 <p><strong>Windows</strong>:  系统程序的核心目录</p>
@@ -185,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
     </div>
   </div>
 
@@ -198,23 +211,23 @@
       <ul>
         
           <li>
+            <a href="/2025/10/23/ARP%E6%96%AD%E7%BD%91%E6%94%BB%E5%87%BB/">ARP断网攻击</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/16/1/">1</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/16/%E5%90%8E%E7%AB%AFphp/">后端php</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/12/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93/">2024美亚杯团体</a>
+          </li>
+        
+          <li>
             <a href="/2025/09/13/%E9%80%86%E5%90%91%E5%88%86%E4%BA%AB/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">MySQL数据库</a>
-          </li>
-        
-          <li>
-            <a href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
-          </li>
-        
-          <li>
-            <a href="/2025/05/06/2024%E7%9B%98%E5%8F%A4%E7%9F%B3/">2024盘古石</a>
-          </li>
-        
-          <li>
-            <a href="/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/">2025平航杯</a>
           </li>
         
       </ul>

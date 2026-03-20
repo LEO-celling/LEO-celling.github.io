@@ -71,6 +71,293 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-VMware虚拟机ssh无法连接的问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/19/VMware%E8%99%9A%E6%8B%9F%E6%9C%BAssh%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2026-03-19T06:38:57.955Z" itemprop="datePublished">2026-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="VMware虚拟机ssh无法连接的问题"><a href="#VMware虚拟机ssh无法连接的问题" class="headerlink" title="VMware虚拟机ssh无法连接的问题"></a>VMware虚拟机ssh无法连接的问题</h1><h2 id="1-SSH连接时出现Connection-refused-如下："><a href="#1-SSH连接时出现Connection-refused-如下：" class="headerlink" title="1.SSH连接时出现Connection refused,如下："></a>1.SSH连接时出现Connection refused,如下：</h2><p>报错如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh: connect to host 123.123.123.111 port 22: Connection refused</span><br></pre></td></tr></table></figure>
+
+<p>通常是由于22端口未打开、ssh服务未启动或防火墙禁止22端口等原因引起的</p>
+<p>解决方法：</p>
+<h3 id="查看SSH服务是否打开"><a href="#查看SSH服务是否打开" class="headerlink" title="&lt;1&gt;查看SSH服务是否打开"></a>&lt;1&gt;查看SSH服务是否打开</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status sshd</span><br></pre></td></tr></table></figure>
+
+<p>如果未启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start sshd</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看端口是否打开"><a href="#查看端口是否打开" class="headerlink" title="&lt;2&gt;查看端口是否打开"></a>&lt;2&gt;查看端口是否打开</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -lnput | grep :22</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试网络的联通性"><a href="#测试网络的联通性" class="headerlink" title="&lt;3&gt;测试网络的联通性"></a>&lt;3&gt;测试网络的联通性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com </span><br></pre></td></tr></table></figure>
+
+<p>如果ping不通，就检查dns</p>
+<p>如果dns无问题，就说明是网络原因，看服务器的网线是否连接或是否有问题</p>
+<h3 id="如果能连接外网，就查看服务器的防火墙规则-并开放ssh服务的22号端口（如防火墙未放行ssh的端口）"><a href="#如果能连接外网，就查看服务器的防火墙规则-并开放ssh服务的22号端口（如防火墙未放行ssh的端口）" class="headerlink" title="&lt;4&gt;如果能连接外网，就查看服务器的防火墙规则,并开放ssh服务的22号端口（如防火墙未放行ssh的端口）"></a>&lt;4&gt;如果能连接外网，就查看服务器的防火墙规则,并开放ssh服务的22号端口（如防火墙未放行ssh的端口）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L</span><br></pre></td></tr></table></figure>
+
+<p>[1]直接打开端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp  --dport 22 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<p>[2]永久打开端口</p>
+<p>打开防火墙配置文件 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure>
+
+<p>在iptables文件内容中追加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<p>保存配置文件后，重启防火墙:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart （centos6）</span><br><span class="line">systemctl restart iptables (centos7 )</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Openssh服务"><a href="#安装Openssh服务" class="headerlink" title="&lt;5&gt;安装Openssh服务"></a>&lt;5&gt;安装Openssh服务</h3><p>确保系统中已安装OpenSSH服务器。不同的Linux发行版有不同的安装命令：</p>
+<p>Debian&#x2F;Ubuntu</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>CentOS&#x2F;RHEL</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> yum install openssh-server</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line"><span class="built_in">sudo</span> dnf install openssh-server</span><br></pre></td></tr></table></figure>
+
+<h3 id="确认服务名称"><a href="#确认服务名称" class="headerlink" title="&lt;6&gt;确认服务名称"></a>&lt;6&gt;<strong>确认服务名称</strong></h3><p>某些系统使用<em>ssh</em>而非<em>sshd</em>作为服务名。可以通过以下命令查看服务名称：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files | grep -E <span class="string">&quot;ssh|sshd&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后尝试启动相应的服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl start ssh <span class="comment"># 对于使用ssh作为服务名的系统</span></span><br><span class="line"><span class="built_in">sudo</span> systemctl start sshd <span class="comment"># 对于使用sshd作为服务名的系统</span></span><br></pre></td></tr></table></figure>
+
+<p>查看ssh&#x2F;sshd开启状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status ssh/sshd</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/19/VMware%E8%99%9A%E6%8B%9F%E6%9C%BAssh%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cmmyo5qyi0000jgv37xy9apsx" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-docker容器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/02/13/docker%E5%AE%B9%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2026-02-13T03:55:03.000Z" itemprop="datePublished">2026-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/02/13/docker%E5%AE%B9%E5%99%A8/">docker容器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="docker容器"><a href="#docker容器" class="headerlink" title="docker容器"></a>docker容器</h1><h2 id="一、docker容器是什么"><a href="#一、docker容器是什么" class="headerlink" title="一、docker容器是什么"></a>一、docker容器是什么</h2><p>软件的打包技术，就是将算乱的多个文件打包为一个整体，打包技术在没有docker容器之前，一直是有这种需求的，比如上节课我把我安 装的虚拟机给你们打包了，前面的这种打包方式是将整个虚拟机打包了，对吧，这样打包出来的体积太大了，而且如果你只是单纯的想要 一个安装好的程序，比如sqlserver数据库，不想自己安装，就想要个安装好的，按照之前的打包方式，太费事费力的，你打包个安装了 sqlserver数据库的虚拟机，光虚拟机本身的操作系统可能就占用了20个G，sqlserver本身可能也就1个G，这是不是就太不合适了，当然 我们自己不会或者不想安装sqlserver的时候，可以选择找个哥们帮你安装一下，但是如果100个人都找你安装，你是不是累死了，所以在 这种情况，容器技术就诞生了，容器技术中的依依者，就是docker，它的底层实现原理我们现在不用纠结。用它来打包出来的软件，体积 会非常小。比如如果在一个虚拟机上安装了nginx，那么这个虚拟机怎么也要1G以上，但是用docker打包的已经安装好的nginx，可能也 就100M左右，体积小很多。接下来我们感受一下docker的使用。后面我们可以将很多部署起来很繁琐的靶场环境都通过docker来打包。 所以现在网上也有很多使用docker跑起来的靶场，复用性非常好，别人打包好的，你直接拿来就用。而且docker有个东西叫做仓库，打 包的东西直接放在仓库里面，全世界都可以共享。docker是2013年诞生的。</p>
+<p> docker打包出来的每个软件，称之为docker镜像。可以说整个IT领域，不管是哪个工种，都需要好好学习docker。 </p>
+<p>docker是CS架构的程序，客户端控制服务端来做各种事情。</p>
+<p><img src="/../image/image-20260319145717347.png" alt="image-20260319145717347"></p>
+<h2 id="二、docker的安装"><a href="#二、docker的安装" class="headerlink" title="二、docker的安装"></a>二、docker的安装</h2><p>centos用yum安装，kali用apt安装，kali属于debian系列的操作系统</p>
+<h3 id="CentOS7安装docker"><a href="#CentOS7安装docker" class="headerlink" title="CentOS7安装docker"></a>CentOS7安装docker</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># centos7上面用yum安装</span></span><br><span class="line">yum install docker -y</span><br><span class="line"><span class="comment">#启动docker</span></span><br><span class="line">systemctl start docker</span><br><span class="line"><span class="comment">#设置开机自启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> docker</span><br><span class="line"></span><br><span class="line"><span class="comment">#体验docker版nginx最新版</span></span><br><span class="line">docker run -d -p 80:80 nginx</span><br><span class="line"><span class="comment">#体验docker版nginx 1.16</span></span><br><span class="line">docker run -d -p 81:80 nginx:1.16</span><br><span class="line"></span><br><span class="line"><span class="comment">#体验wordpress</span></span><br><span class="line">docker run --name mysql -e MYSQL_ROOT_PASSWORD=1234565 -d mysql:5.7</span><br><span class="line">docker run -d --<span class="built_in">link</span> mysql:mysql -p 86:80 wordpress:5.6</span><br></pre></td></tr></table></figure>
+
+<h3 id="Kali安装docker"><a href="#Kali安装docker" class="headerlink" title="Kali安装docker"></a>Kali安装docker</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加docker的gpg密钥，签名用的(连接docker仓库所需要的密钥)</span></span><br><span class="line">curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | <span class="built_in">sudo</span> apt-key add -</span><br><span class="line">wget https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg</span><br><span class="line">apt-key add gpg</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加docker的apt源</span></span><br><span class="line">vi /etc/apt/sources.list</span><br><span class="line">以下内容替换文件里的所有内容</span><br><span class="line">deb [trusted=<span class="built_in">yes</span>] http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb [trusted=<span class="built_in">yes</span>] http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb [trusted=<span class="built_in">yes</span>] http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb [trusted=<span class="built_in">yes</span>] http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment">#更新apt缓存</span></span><br><span class="line">apt update</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装docker</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get instal1 docker docker-compose -y</span><br><span class="line">或</span><br><span class="line"><span class="built_in">sudo</span> apt-get install docker.io</span><br><span class="line"></span><br><span class="line"><span class="comment">#安装完成之后，docker就自动启动了</span></span><br><span class="line">systemctl status docker</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看docker版本</span></span><br><span class="line">docker -v</span><br></pre></td></tr></table></figure>
+
+<p>网络安全有一项工作叫做漏洞复现，有些软件、框架、webserver等等他们某些版本会有各种漏洞，官方看到之后肯定会修复升级，但是<br>某个使用了这些软件的公司可能并没有升级，那么就需要我们检测一下是否真的存在这个漏洞，不能直接再生产环境上去测试，需要在测<br>试环境或者开发环境或者自己搭建的环境中进行漏洞测试，这就是漏洞复现的工作。所以我们好多时候都需要自己来搭建相同版本的软件<br>环境来进行漏洞复现，搭建的环境的时候我们就可以使用docker，很方便。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用docker下载安装最新版本的nginx</span></span><br><span class="line"><span class="comment">#前面的80端口是主机的80端口，后面的80端口是docker容器的80端口。</span></span><br><span class="line">docker run -d -p 80:80 nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#后面可跟版本号，若不跟则默认是最新版本</span></span><br><span class="line">docker run -d -p 80:80 nginx：1.16</span><br></pre></td></tr></table></figure>
+
+<p>这里需要使用国内的镜像加速器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#编辑配置文件</span></span><br><span class="line"><span class="built_in">sudo</span> nano /etc/docker/daemon.jason</span><br></pre></td></tr></table></figure>
+
+<p>复制以下内容到文件里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;https://docker.m.daocloud.io&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://huecker.io&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://dockerhub.timeweb.cloud&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://noohub.net&quot;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存重启docker服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl daemon-reload</span><br><span class="line"><span class="built_in">sudo</span> systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>验证是否生效，执行 <code>docker info</code>，在输出中查看 <code>Registry Mirrors</code> 列表是否包含了你刚才配置的地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#体验wordpress，需要启动两个docker镜像，一个数据的，一个代码程序，这个比较大，所以速度可能会慢一些</span></span><br><span class="line">docker run --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7  <span class="comment"># 5.7版本的MySQL，镜像名称是mysql</span></span><br><span class="line">docker run -d --<span class="built_in">link</span> mysql:mysql -p 86:80 wordpress:5.6 </span><br><span class="line"><span class="comment">#5.6版本的wordpress，最新版本应该已经到了6.x了，但是值得说明的一点就是封装wordpress的人为了将镜像做的比较小，没有安装中文包，所以只能是看英文的了，他会自动连接数据库。如果你发现你安装的镜像不是你要的版本，那么可能是版本指定错误了，或者是官方镜像仓库中的wordpress镜像版本有点问题了。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#可以更改docker镜像库的源</span></span><br><span class="line"><span class="built_in">cd</span> /etc/docker</span><br><span class="line">vim docker.json</span><br><span class="line"><span class="comment">#添加如下内容，并保存退出</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;registry-mirrors&quot;</span>:[<span class="string">&quot;https://registry.docker-cn.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#可以重启docker服务</span></span><br><span class="line">systemctl restart docker</span><br><span class="line">systemctl start docker</span><br><span class="line">systemctl <span class="built_in">enable</span> docker</span><br><span class="line">systemctl stop docker</span><br></pre></td></tr></table></figure>
+
+<p><code>docker run</code>首先检测本地是否已经有了软件镜像，如果没有，它会自动去下载镜像，然后运行，运行起来的镜像，我们称之为容器，可以理解为每个软件都安装在了一个自己的小空间里面。</p>
+<p>docker 镜像 容器</p>
+<p>镜像——&gt;安装了某些特定程序的文件——&gt;压缩文件</p>
+<p>容器——&gt;镜像运行起来之后，就叫做容器（而不叫进程）</p>
+<h2 id="三、镜像常用命令"><a href="#三、镜像常用命令" class="headerlink" title="三、镜像常用命令"></a>三、镜像常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">docker search</span><br><span class="line">	<span class="comment">#搜索镜像（只会搜索官方仓库的，官方仓库地址：hub.docker.com）</span></span><br><span class="line">	<span class="comment"># docker search tomcat</span></span><br><span class="line">	<span class="comment"># docker search apache</span></span><br><span class="line">	<span class="comment"># 拉取的镜像tomcat\apache等名宇很短，这都是官方仓库中的官方镜像，官方仓库中支持用户上传自已封装的镜像，用户镜像和官方镜像的差别在名字上面，比如我们可以去docker官方去注册一个账号，用户白己的镜像前面都会有作者的用户名或者用户所在组织的名字，比如jaden/nginx、jaden/tomcat等。</span></span><br><span class="line">	</span><br><span class="line">docker images</span><br><span class="line">	<span class="comment">#查看本地镜像列表，image就是镜像的意思</span></span><br><span class="line">	<span class="comment">#本地有的镜像，就不用再去下载了，而且可以将本地镜像导出来分享给其他人</span></span><br><span class="line">	</span><br><span class="line">docker pull</span><br><span class="line">	<span class="comment">#下载镜像，拉取镜像</span></span><br><span class="line">	<span class="comment"># docker pull tomcat：latest</span></span><br><span class="line">	<span class="comment"># docker images</span></span><br><span class="line">	</span><br><span class="line">docker push</span><br><span class="line">	<span class="comment">#上床镜像，推送镜像，推到官方仓库（需要本地登录一下官方仓库才能推送）</span></span><br><span class="line">	</span><br><span class="line">docker rmi</span><br><span class="line">	<span class="comment">#删除镜像，rm image的意思，直接rm不加i表示要删除容器，可以通过名称加版本来删除，或者直接通过镜像id值来删除</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/02/13/docker%E5%AE%B9%E5%99%A8/" data-id="cmmyo5qym0001jgv33ylh6mkg" data-title="docker容器" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-服务器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/12/04/%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2025-12-04T10:49:45.165Z" itemprop="datePublished">2025-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h1><h2 id="1-请分析Exsi虚拟化平台是什么时候安装的？"><a href="#1-请分析Exsi虚拟化平台是什么时候安装的？" class="headerlink" title="1.请分析Exsi虚拟化平台是什么时候安装的？"></a>1.请分析Exsi虚拟化平台是什么时候安装的？<img src="C:\Users\110\AppData\Roaming\Typora\typora-user-images\image-20251109090206912.png" alt="image-20251109090206912"></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20251020-062808</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-请分析Exsi虚拟化平台虚拟机使用的ISO镜像大小是多少？"><a href="#2-请分析Exsi虚拟化平台虚拟机使用的ISO镜像大小是多少？" class="headerlink" title="2.请分析Exsi虚拟化平台虚拟机使用的ISO镜像大小是多少？"></a>2.请分析Exsi虚拟化平台虚拟机使用的ISO镜像大小是多少？</h2><p><img src="/../image/image-20251109091412496.png" alt="image-20251109091412496"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.38</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-请分析nas服务器samba应用完整版本标识为？"><a href="#3-请分析nas服务器samba应用完整版本标识为？" class="headerlink" title="3.请分析nas服务器samba应用完整版本标识为？"></a>3.请分析nas服务器samba应用完整版本标识为？</h2><p><img src="/../image/image-20251109101339808.png" alt="image-20251109101339808"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.10.16-25.el7_9</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-分析nas服务器samba应用共享目录允许访问的用户名为？-标准格式：gys666"><a href="#4-分析nas服务器samba应用共享目录允许访问的用户名为？-标准格式：gys666" class="headerlink" title="4.分析nas服务器samba应用共享目录允许访问的用户名为？[标准格式：gys666]"></a>4.分析nas服务器samba应用共享目录允许访问的用户名为？[标准格式：gys666]</h2><p><img src="/../image/image-20251109102338026.png" alt="image-20251109102338026"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shadowai</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-嫌疑人在nas服务器中删除了面板日志，请分析其删除日志后第一次访问服务器的目录物理路径是？-标准格"><a href="#5-嫌疑人在nas服务器中删除了面板日志，请分析其删除日志后第一次访问服务器的目录物理路径是？-标准格" class="headerlink" title="5.嫌疑人在nas服务器中删除了面板日志，请分析其删除日志后第一次访问服务器的目录物理路径是？[标准格"></a>5.嫌疑人在nas服务器中删除了面板日志，请分析其删除日志后第一次访问服务器的目录物理路径是？[标准格</h2><p>式：&#x2F;var&#x2F;soft&#x2F;wegame]</p>
+<p><img src="/../image/image-20251109104413066.png" alt="image-20251109104413066"></p>
+<p><img src="/../image/image-20251109104729969.png" alt="image-20251109104729969"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/run/pcscd</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-某用户在“2025-10-21-18-40-53（北京时间）”向本地AI模型提问，请问其一共提问了几次"><a href="#6-某用户在“2025-10-21-18-40-53（北京时间）”向本地AI模型提问，请问其一共提问了几次" class="headerlink" title="6.某用户在“2025-10-21 18:40:53（北京时间）”向本地AI模型提问，请问其一共提问了几次"></a>6.某用户在“2025-10-21 18:40:53（北京时间）”向本地AI模型提问，请问其一共提问了几次</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/12/04/%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="cmmyo5qyn0003jgv39rdzhe14" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-美亚团体" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/12/04/%E7%BE%8E%E4%BA%9A%E5%9B%A2%E4%BD%93/" class="article-date">
+  <time class="dt-published" datetime="2025-12-04T10:49:40.691Z" itemprop="datePublished">2025-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h1><ol start="59">
+<li></li>
+</ol>
+<p><img src="/../image/image-20251115142658869.png" alt="image-20251115142658869"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">raid-6</span><br></pre></td></tr></table></figure>
+
+<ol start="60">
+<li></li>
+</ol>
+<p><img src="/../image/59.png" alt="59"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="104">
+<li></li>
+</ol>
+<p><img src="/../image/image-20251115151039024.png" alt="image-20251115151039024"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hayson.L</span><br></pre></td></tr></table></figure>
+
+<ol start="105">
+<li></li>
+</ol>
+<p><img src="/../image/image-20251115151411879.png" alt="image-20251115151411879"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/12/04/%E7%BE%8E%E4%BA%9A%E5%9B%A2%E4%BD%93/" data-id="cmmyo5qyo0004jgv3bgg048ft" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-四川比武大赛" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/12/04/%E5%9B%9B%E5%B7%9D%E6%AF%94%E6%AD%A6%E5%A4%A7%E8%B5%9B/" class="article-date">
+  <time class="dt-published" datetime="2025-12-04T10:49:38.349Z" itemprop="datePublished">2025-12-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="四川比武大赛"><a href="#四川比武大赛" class="headerlink" title="四川比武大赛"></a>四川比武大赛</h1><p>服务器部分</p>
+<ol start="59">
+<li></li>
+</ol>
+<p><img src="C:\Users\110\AppData\Roaming\Typora\typora-user-images\image-20251102092642008.png" alt="image-20251102092642008"></p>
+<ol start="60">
+<li></li>
+</ol>
+<p><img src="C:\Users\110\AppData\Roaming\Typora\typora-user-images\image-20251102092706935.png" alt="image-20251102092706935"></p>
+<p>61<img src="C:\Users\110\AppData\Roaming\Typora\typora-user-images\image-20251102094752092.png" alt="image-20251102094752092"></p>
+<ol start="62">
+<li></li>
+</ol>
+<p><img src="C:\Users\110\AppData\Roaming\Typora\typora-user-images\image-20251102103234846.png" alt="image-20251102103234846"></p>
+<p>63.<img src="C:\Users\110\AppData\Roaming\Typora\typora-user-images\image-20251102104303361.png" alt="image-20251102104303361"></p>
+<p>64.<img src="C:\Users\110\AppData\Roaming\Typora\typora-user-images\image-20251102115143133.png" alt="image-20251102115143133"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/12/04/%E5%9B%9B%E5%B7%9D%E6%AF%94%E6%AD%A6%E5%A4%A7%E8%B5%9B/" data-id="cmmyo5qyn0002jgv3ht8t3jag" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-ARP断网攻击" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/10/23/ARP%E6%96%AD%E7%BD%91%E6%94%BB%E5%87%BB/" class="article-date">
@@ -705,221 +992,6 @@
 
 
   
-    <article id="post-MySQL数据库" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
-  <time class="dt-published" datetime="2025-08-12T09:09:52.000Z" itemprop="datePublished">2025-08-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">MySQL数据库</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="数据库的分类"><a href="#数据库的分类" class="headerlink" title="数据库的分类"></a>数据库的分类</h1><p>关系型数据库和非关系类数据库</p>
-        
-          <p class="article-more-link">
-            <a href="/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/08/12/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="cmfv2uzio00015sv35jvccqxi" data-title="MySQL数据库" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-SQL注入" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/" class="article-date">
-  <time class="dt-published" datetime="2025-08-05T12:35:26.000Z" itemprop="datePublished">2025-08-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="SQL基础"><a href="#SQL基础" class="headerlink" title="SQL基础"></a>SQL基础</h1><p><img src="/../image/image-20250805203728790.png" alt="image-20250805203728790"></p>
-        
-          <p class="article-more-link">
-            <a href="/2025/08/05/SQL%E6%B3%A8%E5%85%A5/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/08/05/SQL%E6%B3%A8%E5%85%A5/" data-id="cme2jp2ok0000ucv3eyyf3lfo" data-title="SQL注入" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2024盘古石" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/05/06/2024%E7%9B%98%E5%8F%A4%E7%9F%B3/" class="article-date">
-  <time class="dt-published" datetime="2025-05-06T12:30:17.000Z" itemprop="datePublished">2025-05-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/05/06/2024%E7%9B%98%E5%8F%A4%E7%9F%B3/">2024盘古石</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="服务器取证"><a href="#服务器取证" class="headerlink" title="服务器取证"></a>服务器取证</h1><h2 id="1-分析内部IM服务器检材，在搭建的内部即时通讯平台中，客户端与服务器的通讯端口是：-答案格式：8888"><a href="#1-分析内部IM服务器检材，在搭建的内部即时通讯平台中，客户端与服务器的通讯端口是：-答案格式：8888" class="headerlink" title="1.分析内部IM服务器检材，在搭建的内部即时通讯平台中，客户端与服务器的通讯端口是：[答案格式：8888]"></a>1.分析内部IM服务器检材，在搭建的内部即时通讯平台中，客户端与服务器的通讯端口是：[答案格式：8888]</h2>
-        
-          <p class="article-more-link">
-            <a href="/2025/05/06/2024%E7%9B%98%E5%8F%A4%E7%9F%B3/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/05/06/2024%E7%9B%98%E5%8F%A4%E7%9F%B3/" data-id="cmafbu5910000bkv3gaqbfqvk" data-title="2024盘古石" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025平航杯" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/" class="article-date">
-  <time class="dt-published" datetime="2025-04-28T11:53:19.000Z" itemprop="datePublished">2025-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/">2025平航杯</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机取证"><a href="#计算机取证" class="headerlink" title="计算机取证"></a>计算机取证</h1><h2 id="1-分析起早王的计算机检材，起早王的计算机插入过usb序列号是什么-格式：1"><a href="#1-分析起早王的计算机检材，起早王的计算机插入过usb序列号是什么-格式：1" class="headerlink" title="1.分析起早王的计算机检材，起早王的计算机插入过usb序列号是什么(格式：1)"></a>1.分析起早王的计算机检材，起早王的计算机插入过usb序列号是什么(格式：1)</h2>
-        
-          <p class="article-more-link">
-            <a href="/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/04/28/2025%E5%B9%B3%E8%88%AA%E6%9D%AF/" data-id="cmacdowno0001mcv3bi9j0vna" data-title="2025平航杯" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2025FIC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/04/26/2025FIC/" class="article-date">
-  <time class="dt-published" datetime="2025-04-26T04:38:03.000Z" itemprop="datePublished">2025-04-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/04/26/2025FIC/">2025FIC</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1>
-        
-          <p class="article-more-link">
-            <a href="/2025/04/26/2025FIC/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/04/26/2025FIC/" data-id="cmacdownm0000mcv3gwjm0ron" data-title="2025FIC" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -943,7 +1015,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
     </div>
   </div>
 
@@ -956,23 +1028,23 @@
       <ul>
         
           <li>
-            <a href="/2025/10/23/ARP%E6%96%AD%E7%BD%91%E6%94%BB%E5%87%BB/">ARP断网攻击</a>
+            <a href="/2026/03/19/VMware%E8%99%9A%E6%8B%9F%E6%9C%BAssh%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2025/10/16/1/">1</a>
+            <a href="/2026/02/13/docker%E5%AE%B9%E5%99%A8/">docker容器</a>
           </li>
         
           <li>
-            <a href="/2025/10/16/%E5%90%8E%E7%AB%AFphp/">后端php</a>
+            <a href="/2025/12/04/%E6%9C%8D%E5%8A%A1%E5%99%A8/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2025/10/12/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E5%9B%A2%E4%BD%93/">2024美亚杯团体</a>
+            <a href="/2025/12/04/%E7%BE%8E%E4%BA%9A%E5%9B%A2%E4%BD%93/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2025/09/13/%E9%80%86%E5%90%91%E5%88%86%E4%BA%AB/">(no title)</a>
+            <a href="/2025/12/04/%E5%9B%9B%E5%B7%9D%E6%AF%94%E6%AD%A6%E5%A4%A7%E8%B5%9B/">(no title)</a>
           </li>
         
       </ul>
@@ -988,7 +1060,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2025 John Doe<br>
+      &copy; 2026 John Doe<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

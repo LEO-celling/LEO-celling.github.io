@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>NAS服务器与RAID重组 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="NAS服务器NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。 简单来说：就相当于一个便宜的、低功耗的电脑，塞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAS服务器与RAID重组">
+<meta property="og:url" content="http://example.com/2026/04/07/NAS%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ERAID%E9%87%8D%E7%BB%84/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="NAS服务器NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。 简单来说：就相当于一个便宜的、低功耗的电脑，塞">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/image/v2-f19764545b5aef702dcf415aeaf4f53e_r.jpg">
+<meta property="og:image" content="http://example.com/image/v2-d96a366ea45552d769d9fd653e8122eb_r.jpg">
+<meta property="og:image" content="http://example.com/image/v2-b2b9390180a9e5bf186cab19c31192d9_r.jpg">
+<meta property="og:image" content="http://example.com/image/v2-aeb458ddba57d0e3742f6dc6a15b7756_1440w.jpg">
+<meta property="og:image" content="http://example.com/image/02b513d0c9fb3b737fcd9609ec86bbde.png">
+<meta property="og:image" content="http://example.com/image/995dd567c16ce46c8941c7a49b37bcf8.png">
+<meta property="og:image" content="http://example.com/image/29d4e63bf7a3b3e64ff5c2ea610e1f09.png">
+<meta property="article:published_time" content="2026-04-07T11:26:35.000Z">
+<meta property="article:modified_time" content="2026-04-07T12:26:47.759Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/v2-f19764545b5aef702dcf415aeaf4f53e_r.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-NAS服务器与RAID重组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/07/NAS%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ERAID%E9%87%8D%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2026-04-07T11:26:35.000Z" itemprop="datePublished">2026-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      NAS服务器与RAID重组
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="NAS服务器"><a href="#NAS服务器" class="headerlink" title="NAS服务器"></a>NAS服务器</h1><p>NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。</p>
+<p><strong>简单来说</strong>：就相当于一个便宜的、低功耗的电脑，塞进去好几块硬盘，里面预装了现成的文件服务器和其它一些备份用的软件。你把这个连到家里网上，就好像给自己架设了一个云盘，可以保存很多小姐姐和小哥哥，然后去到哪都可以访问里面的文件、图片、视频……还可以做虚拟服务机下载各种东西。</p>
+<h1 id="RAID重组"><a href="#RAID重组" class="headerlink" title="RAID重组"></a>RAID重组</h1><h2 id="1-什么是RAID存储？"><a href="#1-什么是RAID存储？" class="headerlink" title="1.什么是RAID存储？"></a>1.什么是RAID存储？</h2><p>独立磁盘冗余阵列（RAID）是一种存储技术，通过将两个或多个硬盘驱动器（HDD）或固态硬盘（SSD）合并成一个协调的存储单元或阵列，从而创建数据丢失的故障安全机制。</p>
+<h2 id="2-RAID存储有什么好处？"><a href="#2-RAID存储有什么好处？" class="headerlink" title="2.RAID存储有什么好处？"></a>2.RAID存储有什么好处？</h2><p>RAID存储通过将数据重复或重新创建，并将其存储在附加的驱动器上来防止磁盘驱动器数据的完全丢失，这个过程也被称为数据冗余。</p>
+<p>提供数据丢失保护的配置被称为“容错”配置，这意味着即使磁盘驱动器发生故障，阵列仍然可以成功运行并提供可恢复的数据。</p>
+<h2 id="3-常见的RAID级别有哪些？"><a href="#3-常见的RAID级别有哪些？" class="headerlink" title="3.常见的RAID级别有哪些？"></a>3.常见的RAID级别有哪些？</h2><h3 id="（1）RAID-0：条带化（数据分块）但没有冗余，提供较高的读写性能。"><a href="#（1）RAID-0：条带化（数据分块）但没有冗余，提供较高的读写性能。" class="headerlink" title="（1）RAID 0：条带化（数据分块）但没有冗余，提供较高的读写性能。"></a>（1）RAID 0：条带化（数据分块）但没有冗余，提供较高的读写性能。</h3><p>RAID 0 是一种非常简单的的方式，它将多块磁盘组合在一起形成一个大容量的存储。当我们要写数据的时候，会将数据分为N份，以独立的方式实现N块磁盘的读写，那么这N份数据会同时并发的写到磁盘中，因此执行性能非常的高。</p>
+<p><img src="/../image/v2-f19764545b5aef702dcf415aeaf4f53e_r.jpg" alt="img"></p>
+<p>RAID 0 的读写性能理论上是单块磁盘的N倍（仅限理论，因为实际中磁盘的寻址时间也是性能占用的大头）</p>
+<p>但RAID 0的问题是，它并不提供数据校验或冗余备份，因此一旦某块磁盘损坏了，数据就直接丢失，无法恢复了。因此RAID 0就不可能用于高要求的业务中，但可以用在对可靠性要求不高，对读写性能要求高的场景中。</p>
+<h3 id="（2）RAID-1：镜像，数据完全复制到另一个驱动器，提供容错能力。"><a href="#（2）RAID-1：镜像，数据完全复制到另一个驱动器，提供容错能力。" class="headerlink" title="（2）RAID 1：镜像，数据完全复制到另一个驱动器，提供容错能力。"></a>（2）RAID 1：镜像，数据完全复制到另一个驱动器，提供容错能力。</h3><p><img src="/../image/v2-d96a366ea45552d769d9fd653e8122eb_r.jpg" alt="img"></p>
+<p>RAID1 是磁盘阵列中单位成本最高的一种方式。因为它的原理是在往磁盘写数据的时候，将同一份数据无差别的写两份到磁盘，分别写到工作磁盘和镜像磁盘，那么它的实际空间使用率只有50%了，两块磁盘当做一块用，这是一种比较昂贵的方案。</p>
+<p>RAID1其实与RAID0效果刚好相反。RAID1 这种写双份的做法，就给数据做了一个冗余备份。这样的话，任何一块磁盘损坏了，都可以再基于另外一块磁盘去恢复数据，数据的可靠性非常强，但性能就没那么好了。</p>
+<h3 id="（3）RAID-5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。"><a href="#（3）RAID-5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。" class="headerlink" title="（3）RAID 5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。"></a>（3）RAID 5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。</h3><p>这是目前用的最多的一种方式。<br>因为 RAID5 是一种将 存储性能、数据安全、存储成本 兼顾的一种方案。</p>
+<p>在了解RAID5之前，我们可以先简单看一下RAID3，虽然RAID3用的很少，但弄清楚了RAID3就很容易明白RAID5的思路。</p>
+<p>RAID3的方式是：将数据按照RAID0的形式，分成多份同时写入多块磁盘，但是还会另外再留出一块磁盘用于写「<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=10432475&content_type=Article&match_order=1&q=%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E7%A0%81&zhida_source=entity">奇偶校验码</a>」。例如总共有N块磁盘，那么就会让其中额度N-1块用来并发的写数据，第N块磁盘用记录校验码数据。一旦某一块磁盘坏掉了，就可以利用其它的N-1块磁盘去恢复数据。</p>
+<p>但是由于第N块磁盘是校验码磁盘，因此有任何数据的写入都会要去更新这块磁盘，导致这块磁盘的读写是最频繁的，也就非常的容易损坏。</p>
+<p>RAID5的方式可以说是对RAID3进行了改进。</p>
+<p>RAID5模式中，不再需要用单独的磁盘写校验码了。它把校验码信息分布到各个磁盘上。例如，总共有N块磁盘，那么会将要写入的数据分成N份，并发的写入到N块磁盘中，同时还将数据的校验码信息也写入到这N块磁盘中（数据与对应的校验码信息必须得分开存储在不同的磁盘上）。一旦某一块磁盘损坏了，就可以用剩下的数据和对应的奇偶校验码信息去恢复损坏的数据。</p>
+<p><img src="/../image/v2-b2b9390180a9e5bf186cab19c31192d9_r.jpg" alt="img"></p>
+<p>RAID5校验位算法原理：P &#x3D; D1 xor D2 xor D3 … xor Dn （D1,D2,D3 … Dn为数据块，P为校验，xor为异或运算）</p>
+<p>RAID5的方式，最少需要三块磁盘来组建磁盘阵列，允许最多同时坏一块磁盘。如果有两块磁盘同时损坏了，那数据就无法恢复了。</p>
+<h3 id="（4）RAID-6：类似于RAID-5，但提供更高级别的容错能力。"><a href="#（4）RAID-6：类似于RAID-5，但提供更高级别的容错能力。" class="headerlink" title="（4）RAID 6：类似于RAID 5，但提供更高级别的容错能力。"></a>（4）RAID 6：类似于RAID 5，但提供更高级别的容错能力。</h3><p>为了进一步提高存储的高可用，聪明的人们又提出了RAID6方案，可以在有两块磁盘同时损坏的情况下，也能保障数据可恢复。</p>
+<p>为什么RAID6这么牛呢，因为RAID6在RAID5的基础上再次改进，引入了双重校验的概念。</p>
+<p>RAID6除了每块磁盘上都有同级数据<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=10432475&content_type=Article&match_order=1&q=XOR%E6%A0%A1%E9%AA%8C%E5%8C%BA&zhida_source=entity">XOR校验区</a>以外，还有针对每个数据块的XOR校验区，这样的话，相当于每个数据块有两个校验保护措施，因此数据的冗余性更高了。</p>
+<p>但是RAID6的这种设计也带来了很高的复杂度，虽然数据冗余性好，读取的效率也比较高，但是写数据的性能就很差。因此RAID6在实际环境中应用的比较少。</p>
+<h3 id="（5）RAID-10：RAID-1-0，将RAID-1镜像组合成RAID-0条带化，提供较高的容错能力和读写性能。"><a href="#（5）RAID-10：RAID-1-0，将RAID-1镜像组合成RAID-0条带化，提供较高的容错能力和读写性能。" class="headerlink" title="（5）RAID 10：RAID 1+0，将RAID 1镜像组合成RAID 0条带化，提供较高的容错能力和读写性能。"></a>（5）RAID 10：RAID 1+0，将RAID 1镜像组合成RAID 0条带化，提供较高的容错能力和读写性能。</h3><p><img src="/../image/v2-aeb458ddba57d0e3742f6dc6a15b7756_1440w.jpg" alt="img"></p>
+<p>RAID10兼备了RAID1和RAID0的有优点。首先基于RAID1模式将磁盘分为2份，当要写入数据的时候，将所有的数据在两份磁盘上同时写入，相当于写了双份数据，起到了数据保障的作用。且在每一份磁盘上又会基于RAID0技术讲数据分为N份并发的读写，这样也保障了数据的效率。</p>
+<p>但也可以看出RAID10模式是有一半的磁盘空间用于存储冗余数据的，浪费的很严重，因此用的也不是很多。</p>
+<h3 id="（6）RAID-50：RAID-5组合成RAID-0，提供较高的性能和容错能力。"><a href="#（6）RAID-50：RAID-5组合成RAID-0，提供较高的性能和容错能力。" class="headerlink" title="（6）RAID 50：RAID 5组合成RAID 0，提供较高的性能和容错能力。"></a>（6）RAID 50：RAID 5组合成RAID 0，提供较高的性能和容错能力。</h3><h3 id="（7）RAID-60：RAID-6组合成RAID-0，提供更高级别的性能和容错能力。"><a href="#（7）RAID-60：RAID-6组合成RAID-0，提供更高级别的性能和容错能力。" class="headerlink" title="（7）RAID 60：RAID 6组合成RAID 0，提供更高级别的性能和容错能力。"></a>（7）RAID 60：RAID 6组合成RAID 0，提供更高级别的性能和容错能力。</h3><h2 id="4-软RAID和硬RAID的区别"><a href="#4-软RAID和硬RAID的区别" class="headerlink" title="4.软RAID和硬RAID的区别"></a>4.软RAID和硬RAID的区别</h2><p>根据实现模式，RAID又分为软RAID和硬RAID。</p>
+<p>软件磁盘阵列（Software RAID）:只需要主板支持即可（通常是芯片组内置的RAID功能，如Intel Matrix RAID，Intel Rapid Storage Technology），不需要任何磁盘阵列卡。若主板损坏，可能难以购买同款主板重建RAID。</p>
+<p>硬件辅助磁盘阵列（Hardware-Assisted RAID）：需要一张基于Fake RAID的RAID卡，以及厂商所提供的驱动程序，但此类RAID卡仍然通过CPU进行运算。这款RAID较易迁移到其他电脑。RAID功能靠运行于操作系统的厂商驱动程序和CPU运算提供。</p>
+<p>操作系统的RAID功能：如Linux、FreeBSD、Windows Server等操作系统内置RAID功能。</p>
+<h2 id="5-美亚杯当中关于RAID检材常出现的名词有哪些？"><a href="#5-美亚杯当中关于RAID检材常出现的名词有哪些？" class="headerlink" title="5.美亚杯当中关于RAID检材常出现的名词有哪些？"></a>5.美亚杯当中关于RAID检材常出现的名词有哪些？</h2><p>物理盘：即物理磁盘，是一种实际存在的硬件存储设备。</p>
+<p>逻辑盘：逻辑盘是在物理盘的基础上，通过软件或操作系统的设置划分出来的具有一定逻辑结构的存储区域。逻辑盘必须建立在物理盘之上，没有物理盘提供实际的存储介质，就无法创建逻辑盘。例如，一块容量为 1TB 的硬盘（物理盘），可以通过操作系统的磁盘管理工具将其划分成几个不同大小的逻辑盘，如 C 盘、D 盘、E 盘等（在 Windows 系统中常见的分区形式）。</p>
+<p>物理和逻辑盘的关系在Linux系统当中常以下面这样的形式存在：</p>
+<p><img src="/../image/02b513d0c9fb3b737fcd9609ec86bbde.png" alt="img"></p>
+<p>dev是device的缩写，dev目录是用于存储硬件设备信息的目录，通过该目录可以直接访问硬件，&#x2F;dev&#x2F;sda是指整个硬盘，&#x2F;dev&#x2F;sda1是指该硬盘下的第一个分区。</p>
+<p>条带大小：在磁盘阵列中，数据被分割并存储到多个磁盘上时，每次写入或读取数据的基本单元大小。也是你重组RAID时需要获取的基本信息之一。</p>
+<p>Disk Group：磁盘组，这里相当于是阵列，例如配置了一个Raid1， 就是一个磁盘组。</p>
+<p>VD (virtual Disk)：通过软件技术模拟出来的磁盘存储设备，它并不具备实际的物理磁盘硬件结构，但在操作系统及应用程序层面却能像真实的磁盘一样被使用，用于存储数据、安装程序等操作。；</p>
+<p>PD (physical disk)：真实物理形态的存储介质，用于在计算机中存储数据、安装操作系统、运行应用程序等。常见的物理磁盘包括硬盘驱动器（Hard Disk Drive，HDD）和固态硬盘（Solid State Drive，SSD）等。。</p>
+<p>HS（Hot Spare）：指在磁盘阵列配置中，预先准备好的一块或多块额外的物理磁盘，这些磁盘在正常情况下处于空闲状态，但时刻准备着在阵列中有磁盘发生故障时，自动接替故障磁盘的工作，以保障数据存储的连续性和系统的正常运行，无需人工手动干预启动替换过程。</p>
+<p>RAID5当中涉及到的关键名词，重构RAID5 获取其循环方式也是重组成功的另一关键要素。</p>
+<p>左循环不对称（异步）(Left-asymmetric) 右循环不对称（异步）(Right-asymmetric )</p>
+<p>左循环对称（同步）(Left-symmetric) 右循环对称（同步） (Right-symmetric)</p>
+<p>在Winhex中的表示方法：<br><img src="/../image/995dd567c16ce46c8941c7a49b37bcf8.png" alt="img"></p>
+<h2 id="6-你重组RAID需要获取哪些信息呢？"><a href="#6-你重组RAID需要获取哪些信息呢？" class="headerlink" title="6.你重组RAID需要获取哪些信息呢？"></a>6.你重组RAID需要获取哪些信息呢？</h2><p>1.RAID类型	 2.条带大小 	3.循环方式</p>
+<p>如下图：可以看到是RAID 5，64KB,左循环对称</p>
+<p><img src="/../image/29d4e63bf7a3b3e64ff5c2ea610e1f09.png" alt="img"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/04/07/NAS%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ERAID%E9%87%8D%E7%BB%84/" data-id="cmub0qwqm0000hwv30wc981pq" data-title="NAS服务器与RAID重组" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/09/21/%E5%85%AC%E5%AE%89%E5%A4%A7%E6%95%B0%E6%8D%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/31/HTTP%E5%8D%8F%E8%AE%AE%E5%92%8CBP%E6%8A%93%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTTP协议和BP抓包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/09/">September 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/12/">December 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/09/21/%E5%85%AC%E5%AE%89%E5%A4%A7%E6%95%B0%E6%8D%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/07/NAS%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ERAID%E9%87%8D%E7%BB%84/">NAS服务器与RAID重组</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/31/HTTP%E5%8D%8F%E8%AE%AE%E5%92%8CBP%E6%8A%93%E5%8C%85/">HTTP协议和BP抓包</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/19/VMware%E8%99%9A%E6%8B%9F%E6%9C%BAssh%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%97%AE%E9%A2%98/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/13/docker%E5%AE%B9%E5%99%A8/">docker容器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

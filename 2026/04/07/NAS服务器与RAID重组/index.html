@@ -6,12 +6,12 @@
   
   <title>NAS服务器与RAID重组 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="NAS服务器NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。 简单来说：就相当于一个便宜的、低功耗的电脑">
+  <meta name="description" content="NAS服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NAS服务器与RAID重组">
 <meta property="og:url" content="http://example.com/2026/04/07/NAS%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ERAID%E9%87%8D%E7%BB%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="NAS服务器NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。 简单来说：就相当于一个便宜的、低功耗的电脑">
+<meta property="og:description" content="NAS服务器">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/image/v2-f19764545b5aef702dcf415aeaf4f53e_r.jpg">
 <meta property="og:image" content="http://example.com/image/v2-d96a366ea45552d769d9fd653e8122eb_r.jpg">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://example.com/image/995dd567c16ce46c8941c7a49b37bcf8.png">
 <meta property="og:image" content="http://example.com/image/29d4e63bf7a3b3e64ff5c2ea610e1f09.png">
 <meta property="article:published_time" content="2026-04-07T11:26:35.000Z">
-<meta property="article:modified_time" content="2026-09-21T09:08:29.050Z">
+<meta property="article:modified_time" content="2026-09-21T09:17:45.194Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/image/v2-f19764545b5aef702dcf415aeaf4f53e_r.jpg">
@@ -103,9 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <span id="more"></span>
+        <h1 id="NAS服务器"><a href="#NAS服务器" class="headerlink" title="NAS服务器"></a>NAS服务器</h1><span id="more"></span>
 
-<h1 id="NAS服务器"><a href="#NAS服务器" class="headerlink" title="NAS服务器"></a>NAS服务器</h1><p>NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。</p>
+<p>NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。</p>
 <p><strong>简单来说</strong>：就相当于一个便宜的、低功耗的电脑，塞进去好几块硬盘，里面预装了现成的文件服务器和其它一些备份用的软件。你把这个连到家里网上，就好像给自己架设了一个云盘，可以保存很多小姐姐和小哥哥，然后去到哪都可以访问里面的文件、图片、视频……还可以做虚拟服务机下载各种东西。</p>
 <h1 id="RAID重组"><a href="#RAID重组" class="headerlink" title="RAID重组"></a>RAID重组</h1><h2 id="1-什么是RAID存储？"><a href="#1-什么是RAID存储？" class="headerlink" title="1.什么是RAID存储？"></a>1.什么是RAID存储？</h2><p>独立磁盘冗余阵列（RAID）是一种存储技术，通过将两个或多个硬盘驱动器（HDD）或固态硬盘（SSD）合并成一个协调的存储单元或阵列，从而创建数据丢失的故障安全机制。</p>
 <h2 id="2-RAID存储有什么好处？"><a href="#2-RAID存储有什么好处？" class="headerlink" title="2.RAID存储有什么好处？"></a>2.RAID存储有什么好处？</h2><p>RAID存储通过将数据重复或重新创建，并将其存储在附加的驱动器上来防止磁盘驱动器数据的完全丢失，这个过程也被称为数据冗余。</p>

@@ -126,58 +126,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <span id="more"></span>
-
-<h1 id="NAS服务器"><a href="#NAS服务器" class="headerlink" title="NAS服务器"></a>NAS服务器</h1><p>NAS（Network Attached Storage：网络附属存储）按字面简单说就是连接在网络上，具备资料存储功能的装置，因此也称为“网络存储器”。它是一种专用数据存储服务器。它以数据为中心，将存储设备与服务器彻底分离，集中管理数据，从而释放带宽、提高性能、降低总拥有成本、保护投资。其成本远远低于使用服务器存储，而效率却远远高于后者。</p>
-<p><strong>简单来说</strong>：就相当于一个便宜的、低功耗的电脑，塞进去好几块硬盘，里面预装了现成的文件服务器和其它一些备份用的软件。你把这个连到家里网上，就好像给自己架设了一个云盘，可以保存很多小姐姐和小哥哥，然后去到哪都可以访问里面的文件、图片、视频……还可以做虚拟服务机下载各种东西。</p>
-<h1 id="RAID重组"><a href="#RAID重组" class="headerlink" title="RAID重组"></a>RAID重组</h1><h2 id="1-什么是RAID存储？"><a href="#1-什么是RAID存储？" class="headerlink" title="1.什么是RAID存储？"></a>1.什么是RAID存储？</h2><p>独立磁盘冗余阵列（RAID）是一种存储技术，通过将两个或多个硬盘驱动器（HDD）或固态硬盘（SSD）合并成一个协调的存储单元或阵列，从而创建数据丢失的故障安全机制。</p>
-<h2 id="2-RAID存储有什么好处？"><a href="#2-RAID存储有什么好处？" class="headerlink" title="2.RAID存储有什么好处？"></a>2.RAID存储有什么好处？</h2><p>RAID存储通过将数据重复或重新创建，并将其存储在附加的驱动器上来防止磁盘驱动器数据的完全丢失，这个过程也被称为数据冗余。</p>
-<p>提供数据丢失保护的配置被称为“容错”配置，这意味着即使磁盘驱动器发生故障，阵列仍然可以成功运行并提供可恢复的数据。</p>
-<h2 id="3-常见的RAID级别有哪些？"><a href="#3-常见的RAID级别有哪些？" class="headerlink" title="3.常见的RAID级别有哪些？"></a>3.常见的RAID级别有哪些？</h2><h3 id="（1）RAID-0：条带化（数据分块）但没有冗余，提供较高的读写性能。"><a href="#（1）RAID-0：条带化（数据分块）但没有冗余，提供较高的读写性能。" class="headerlink" title="（1）RAID 0：条带化（数据分块）但没有冗余，提供较高的读写性能。"></a>（1）RAID 0：条带化（数据分块）但没有冗余，提供较高的读写性能。</h3><p>RAID 0 是一种非常简单的的方式，它将多块磁盘组合在一起形成一个大容量的存储。当我们要写数据的时候，会将数据分为N份，以独立的方式实现N块磁盘的读写，那么这N份数据会同时并发的写到磁盘中，因此执行性能非常的高。</p>
-<p><img src="/../image/v2-f19764545b5aef702dcf415aeaf4f53e_r.jpg" alt="img"></p>
-<p>RAID 0 的读写性能理论上是单块磁盘的N倍（仅限理论，因为实际中磁盘的寻址时间也是性能占用的大头）</p>
-<p>但RAID 0的问题是，它并不提供数据校验或冗余备份，因此一旦某块磁盘损坏了，数据就直接丢失，无法恢复了。因此RAID 0就不可能用于高要求的业务中，但可以用在对可靠性要求不高，对读写性能要求高的场景中。</p>
-<h3 id="（2）RAID-1：镜像，数据完全复制到另一个驱动器，提供容错能力。"><a href="#（2）RAID-1：镜像，数据完全复制到另一个驱动器，提供容错能力。" class="headerlink" title="（2）RAID 1：镜像，数据完全复制到另一个驱动器，提供容错能力。"></a>（2）RAID 1：镜像，数据完全复制到另一个驱动器，提供容错能力。</h3><p><img src="/../image/v2-d96a366ea45552d769d9fd653e8122eb_r.jpg" alt="img"></p>
-<p>RAID1 是磁盘阵列中单位成本最高的一种方式。因为它的原理是在往磁盘写数据的时候，将同一份数据无差别的写两份到磁盘，分别写到工作磁盘和镜像磁盘，那么它的实际空间使用率只有50%了，两块磁盘当做一块用，这是一种比较昂贵的方案。</p>
-<p>RAID1其实与RAID0效果刚好相反。RAID1 这种写双份的做法，就给数据做了一个冗余备份。这样的话，任何一块磁盘损坏了，都可以再基于另外一块磁盘去恢复数据，数据的可靠性非常强，但性能就没那么好了。</p>
-<h3 id="（3）RAID-5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。"><a href="#（3）RAID-5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。" class="headerlink" title="（3）RAID 5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。"></a>（3）RAID 5：条带化加分布式奇偶校验，提供数据冗余和读取性能。目前美亚杯考核最常出现的类型，重点掌握。</h3><p>这是目前用的最多的一种方式。<br>因为 RAID5 是一种将 存储性能、数据安全、存储成本 兼顾的一种方案。</p>
-<p>在了解RAID5之前，我们可以先简单看一下RAID3，虽然RAID3用的很少，但弄清楚了RAID3就很容易明白RAID5的思路。</p>
-<p>RAID3的方式是：将数据按照RAID0的形式，分成多份同时写入多块磁盘，但是还会另外再留出一块磁盘用于写「<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=10432475&content_type=Article&match_order=1&q=%E5%A5%87%E5%81%B6%E6%A0%A1%E9%AA%8C%E7%A0%81&zhida_source=entity">奇偶校验码</a>」。例如总共有N块磁盘，那么就会让其中额度N-1块用来并发的写数据，第N块磁盘用记录校验码数据。一旦某一块磁盘坏掉了，就可以利用其它的N-1块磁盘去恢复数据。</p>
-<p>但是由于第N块磁盘是校验码磁盘，因此有任何数据的写入都会要去更新这块磁盘，导致这块磁盘的读写是最频繁的，也就非常的容易损坏。</p>
-<p>RAID5的方式可以说是对RAID3进行了改进。</p>
-<p>RAID5模式中，不再需要用单独的磁盘写校验码了。它把校验码信息分布到各个磁盘上。例如，总共有N块磁盘，那么会将要写入的数据分成N份，并发的写入到N块磁盘中，同时还将数据的校验码信息也写入到这N块磁盘中（数据与对应的校验码信息必须得分开存储在不同的磁盘上）。一旦某一块磁盘损坏了，就可以用剩下的数据和对应的奇偶校验码信息去恢复损坏的数据。</p>
-<p><img src="/../image/v2-b2b9390180a9e5bf186cab19c31192d9_r.jpg" alt="img"></p>
-<p>RAID5校验位算法原理：P &#x3D; D1 xor D2 xor D3 … xor Dn （D1,D2,D3 … Dn为数据块，P为校验，xor为异或运算）</p>
-<p>RAID5的方式，最少需要三块磁盘来组建磁盘阵列，允许最多同时坏一块磁盘。如果有两块磁盘同时损坏了，那数据就无法恢复了。</p>
-<h3 id="（4）RAID-6：类似于RAID-5，但提供更高级别的容错能力。"><a href="#（4）RAID-6：类似于RAID-5，但提供更高级别的容错能力。" class="headerlink" title="（4）RAID 6：类似于RAID 5，但提供更高级别的容错能力。"></a>（4）RAID 6：类似于RAID 5，但提供更高级别的容错能力。</h3><p>为了进一步提高存储的高可用，聪明的人们又提出了RAID6方案，可以在有两块磁盘同时损坏的情况下，也能保障数据可恢复。</p>
-<p>为什么RAID6这么牛呢，因为RAID6在RAID5的基础上再次改进，引入了双重校验的概念。</p>
-<p>RAID6除了每块磁盘上都有同级数据<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=10432475&content_type=Article&match_order=1&q=XOR%E6%A0%A1%E9%AA%8C%E5%8C%BA&zhida_source=entity">XOR校验区</a>以外，还有针对每个数据块的XOR校验区，这样的话，相当于每个数据块有两个校验保护措施，因此数据的冗余性更高了。</p>
-<p>但是RAID6的这种设计也带来了很高的复杂度，虽然数据冗余性好，读取的效率也比较高，但是写数据的性能就很差。因此RAID6在实际环境中应用的比较少。</p>
-<h3 id="（5）RAID-10：RAID-1-0，将RAID-1镜像组合成RAID-0条带化，提供较高的容错能力和读写性能。"><a href="#（5）RAID-10：RAID-1-0，将RAID-1镜像组合成RAID-0条带化，提供较高的容错能力和读写性能。" class="headerlink" title="（5）RAID 10：RAID 1+0，将RAID 1镜像组合成RAID 0条带化，提供较高的容错能力和读写性能。"></a>（5）RAID 10：RAID 1+0，将RAID 1镜像组合成RAID 0条带化，提供较高的容错能力和读写性能。</h3><p><img src="/../image/v2-aeb458ddba57d0e3742f6dc6a15b7756_1440w.jpg" alt="img"></p>
-<p>RAID10兼备了RAID1和RAID0的有优点。首先基于RAID1模式将磁盘分为2份，当要写入数据的时候，将所有的数据在两份磁盘上同时写入，相当于写了双份数据，起到了数据保障的作用。且在每一份磁盘上又会基于RAID0技术讲数据分为N份并发的读写，这样也保障了数据的效率。</p>
-<p>但也可以看出RAID10模式是有一半的磁盘空间用于存储冗余数据的，浪费的很严重，因此用的也不是很多。</p>
-<h3 id="（6）RAID-50：RAID-5组合成RAID-0，提供较高的性能和容错能力。"><a href="#（6）RAID-50：RAID-5组合成RAID-0，提供较高的性能和容错能力。" class="headerlink" title="（6）RAID 50：RAID 5组合成RAID 0，提供较高的性能和容错能力。"></a>（6）RAID 50：RAID 5组合成RAID 0，提供较高的性能和容错能力。</h3><h3 id="（7）RAID-60：RAID-6组合成RAID-0，提供更高级别的性能和容错能力。"><a href="#（7）RAID-60：RAID-6组合成RAID-0，提供更高级别的性能和容错能力。" class="headerlink" title="（7）RAID 60：RAID 6组合成RAID 0，提供更高级别的性能和容错能力。"></a>（7）RAID 60：RAID 6组合成RAID 0，提供更高级别的性能和容错能力。</h3><h2 id="4-软RAID和硬RAID的区别"><a href="#4-软RAID和硬RAID的区别" class="headerlink" title="4.软RAID和硬RAID的区别"></a>4.软RAID和硬RAID的区别</h2><p>根据实现模式，RAID又分为软RAID和硬RAID。</p>
-<p>软件磁盘阵列（Software RAID）:只需要主板支持即可（通常是芯片组内置的RAID功能，如Intel Matrix RAID，Intel Rapid Storage Technology），不需要任何磁盘阵列卡。若主板损坏，可能难以购买同款主板重建RAID。</p>
-<p>硬件辅助磁盘阵列（Hardware-Assisted RAID）：需要一张基于Fake RAID的RAID卡，以及厂商所提供的驱动程序，但此类RAID卡仍然通过CPU进行运算。这款RAID较易迁移到其他电脑。RAID功能靠运行于操作系统的厂商驱动程序和CPU运算提供。</p>
-<p>操作系统的RAID功能：如Linux、FreeBSD、Windows Server等操作系统内置RAID功能。</p>
-<h2 id="5-美亚杯当中关于RAID检材常出现的名词有哪些？"><a href="#5-美亚杯当中关于RAID检材常出现的名词有哪些？" class="headerlink" title="5.美亚杯当中关于RAID检材常出现的名词有哪些？"></a>5.美亚杯当中关于RAID检材常出现的名词有哪些？</h2><p>物理盘：即物理磁盘，是一种实际存在的硬件存储设备。</p>
-<p>逻辑盘：逻辑盘是在物理盘的基础上，通过软件或操作系统的设置划分出来的具有一定逻辑结构的存储区域。逻辑盘必须建立在物理盘之上，没有物理盘提供实际的存储介质，就无法创建逻辑盘。例如，一块容量为 1TB 的硬盘（物理盘），可以通过操作系统的磁盘管理工具将其划分成几个不同大小的逻辑盘，如 C 盘、D 盘、E 盘等（在 Windows 系统中常见的分区形式）。</p>
-<p>物理和逻辑盘的关系在Linux系统当中常以下面这样的形式存在：</p>
-<p><img src="/../image/02b513d0c9fb3b737fcd9609ec86bbde.png" alt="img"></p>
-<p>dev是device的缩写，dev目录是用于存储硬件设备信息的目录，通过该目录可以直接访问硬件，&#x2F;dev&#x2F;sda是指整个硬盘，&#x2F;dev&#x2F;sda1是指该硬盘下的第一个分区。</p>
-<p>条带大小：在磁盘阵列中，数据被分割并存储到多个磁盘上时，每次写入或读取数据的基本单元大小。也是你重组RAID时需要获取的基本信息之一。</p>
-<p>Disk Group：磁盘组，这里相当于是阵列，例如配置了一个Raid1， 就是一个磁盘组。</p>
-<p>VD (virtual Disk)：通过软件技术模拟出来的磁盘存储设备，它并不具备实际的物理磁盘硬件结构，但在操作系统及应用程序层面却能像真实的磁盘一样被使用，用于存储数据、安装程序等操作。；</p>
-<p>PD (physical disk)：真实物理形态的存储介质，用于在计算机中存储数据、安装操作系统、运行应用程序等。常见的物理磁盘包括硬盘驱动器（Hard Disk Drive，HDD）和固态硬盘（Solid State Drive，SSD）等。。</p>
-<p>HS（Hot Spare）：指在磁盘阵列配置中，预先准备好的一块或多块额外的物理磁盘，这些磁盘在正常情况下处于空闲状态，但时刻准备着在阵列中有磁盘发生故障时，自动接替故障磁盘的工作，以保障数据存储的连续性和系统的正常运行，无需人工手动干预启动替换过程。</p>
-<p>RAID5当中涉及到的关键名词，重构RAID5 获取其循环方式也是重组成功的另一关键要素。</p>
-<p>左循环不对称（异步）(Left-asymmetric) 右循环不对称（异步）(Right-asymmetric )</p>
-<p>左循环对称（同步）(Left-symmetric) 右循环对称（同步） (Right-symmetric)</p>
-<p>在Winhex中的表示方法：<br><img src="/../image/995dd567c16ce46c8941c7a49b37bcf8.png" alt="img"></p>
-<h2 id="6-你重组RAID需要获取哪些信息呢？"><a href="#6-你重组RAID需要获取哪些信息呢？" class="headerlink" title="6.你重组RAID需要获取哪些信息呢？"></a>6.你重组RAID需要获取哪些信息呢？</h2><p>1.RAID类型	 2.条带大小 	3.循环方式</p>
-<p>如下图：可以看到是RAID 5，64KB,左循环对称</p>
-<p><img src="/../image/29d4e63bf7a3b3e64ff5c2ea610e1f09.png" alt="img"></p>
-
+        <h1 id="NAS服务器"><a href="#NAS服务器" class="headerlink" title="NAS服务器"></a>NAS服务器</h1>
+        
+          <p class="article-more-link">
+            <a href="/2026/04/07/NAS%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8ERAID%E9%87%8D%E7%BB%84/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -215,28 +169,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <span id="more"></span>
-
-<h1 id="HTTP协议和BP抓包"><a href="#HTTP协议和BP抓包" class="headerlink" title="HTTP协议和BP抓包"></a>HTTP协议和BP抓包</h1><p><img src="/../image/image-20260331201118417.png" alt="image-20260331201118417"></p>
-<h3 id="每层中的协议"><a href="#每层中的协议" class="headerlink" title="每层中的协议"></a>每层中的协议</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">应用层的协议：HTTP协议，HTTPS协议，DNS协议，TELNET协议，FTP协议，SMB协议，RDP协议</span><br><span class="line">传输层的协议：例如ITCP、UDP、RTP、SCTP、SPX、ATP、IL</span><br><span class="line">网络层的协议：例如IP、ICMP、IGMP、IPX、BGP、OSPF、RIP、IGRP、EIGRP、ARP、RARP、X.25</span><br><span class="line">数据链路层的协议：主要是一些MAC子层协议，例如以太网、令牌环、HDLC、帧中继、ISDN、ATM、IEEE802.11、FDDI、PPP</span><br><span class="line">物理层：这一层主要说的是电信号，例如线路、无线电、光纤、信鸽</span><br></pre></td></tr></table></figure>
-
-<p>重点TCP和UDP协议</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TCP（Transmission Control Protocol）可靠的、面向连接的协议（eg:打电话）、传输效率低全双工通信（发送缓存&amp;接收缓存）、面向字节流。使用TCP的应用：Web浏览器；文件传输程序。</span><br><span class="line"></span><br><span class="line">UDP（User Datagram Protocol）不可靠的、无连接的服务，传输效率高（发送前时延小），一对一、一对多、多对一、多对多、面向报文（数据包），尽最大努力服务，无拥塞控制。使用UDP的应用：域名系统（DNS）；视频流；IP语音（VoIP）。</span><br></pre></td></tr></table></figure>
-
-<h3 id="常用端口"><a href="#常用端口" class="headerlink" title="常用端口"></a>常用端口</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">应用层常见的端口和对应传输层协议：</span><br><span class="line">HTTP 80 使用TCP</span><br><span class="line">DNS 53 使用TCP和UDP</span><br><span class="line">HTTPS 443 使用TCP</span><br><span class="line">SMB 445 使用TCP</span><br><span class="line">TELNET 23 使用TCP</span><br><span class="line">FTP 20/21 使用TCP</span><br></pre></td></tr></table></figure>
-
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>HTTP协议，全称超文本传输协议（英文：HyperTextTransferProtocol）是一种使用非常广泛的用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。为什么称之为超文本传输协议呢，不知道大家还记不记的我之前给大家讲前端技术的时候提到过前端页面骨架是HTML语言写出来的，HTML全称为超文本标记语言，HTTP协议最开始就是为了传输HTML页面数据来制定的一种协议。设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。</p>
-<p>简单发展史（可略过）：HTTP的发展是由蒂姆·伯纳斯-李于1989年在欧洲核子研究组织（CERN）所发起。HTTP的标准制定由万维网协会<br>(World WideWeb Consortium，W3C）和互联网工程任务组（Internet EngineeringTaskForce，LETE）进行协调，最终发布了一系列的RFC，其中最著名的是1999年6月公布的RFC2616，定义了HTTP协议中现今广泛使用的一个版本—一HTTP1.1，在这之前应用广泛的是HTTP1.0版本。2014年12月，互联网工程任务组（IETE）的HypertextTransferProtocolBis（httpbis）工作小组将HTTP&#x2F;2标准提议递交至IESG进行讨论，于2015年2月17日被批准。HTTP&#x2F;2标准于2015年5月以RFC7540正式发表，取代HTTP1.1成为HTTP的实现标准。但实际上到目前为止，广泛使用的还是HTTP1.1版本。</p>
-<p>协议是什么？我们要搞清楚这个概念，协议就是双方协商好的做一个事情的标准，就比如说我们国际通用语言是英语，各国通信都用英语，这就是个协议(我相信以后可能都用汉语，哈哈，中国博大精深)，这个标准对于我们的网络来说，其实指的就是一种数据格式。</p>
-<p>比如，我抓取一下请求百度的HTTP协议数据包给大家看一下，抓取网络请求数据包大家还不会，没关系，先看一下大致的数据格式，后面我们会细说里面的数据都是干什么的，怎么抓取数据包等内容。burp suite    fiddler    charles</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Burp-Suite抓包"><a href="#Burp-Suite抓包" class="headerlink" title="Burp Suite抓包"></a>Burp Suite抓包</h2><p>Burp Suite是Java语言开发的，下载下来之后的可执行程序是Java文件类型的jar文件，免费版可以从官网下载。免费版的Burp Suite会有许多限制，无法使用很多高级工具，如果想使用更多的高级功能，需要付费购买专业版。不过现在市面上有很多的破解版和汉化版。为了方便大家学习，接下来我就给大家一个最新的Burp Suite破解汉化版，中文界面，使用上更加方便，如果大家英文不错的话，其实后续工作还是建议大家使用英文版的。</p>
-<h3 id="Burp-Suite安装"><a href="#Burp-Suite安装" class="headerlink" title="Burp Suite安装"></a>Burp Suite安装</h3><p>第一步：下载JDK</p>
-<p>由于BP是java语言开发的，运行环境需要安装好Java的JDK，不然程序没法运行，首先下载Java的JDK</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">下载网址：</span><br><span class="line">		国内：https://www.java.com/zh-CN/download/</span><br><span class="line">		国外:https://www.oracle.com/java/technologies/downloads/</span><br></pre></td></tr></table></figure>
-
-
+        <h1 id="HTTP协议和BP抓包"><a href="#HTTP协议和BP抓包" class="headerlink" title="HTTP协议和BP抓包"></a>HTTP协议和BP抓包</h1><p><img src="/../image/image-20260331201118417.png" alt="image-20260331201118417"></p>
+        
+          <p class="article-more-link">
+            <a href="/2026/03/31/HTTP%E5%8D%8F%E8%AE%AE%E5%92%8CBP%E6%8A%93%E5%8C%85/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
